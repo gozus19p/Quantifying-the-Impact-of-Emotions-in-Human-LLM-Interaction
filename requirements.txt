@@ -2,3 +2,4 @@ pandas
 requests
 ollama
 pymongo
+tqdm

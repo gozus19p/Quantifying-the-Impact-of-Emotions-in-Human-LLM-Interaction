@@ -1,4 +1,4 @@
-from typing import Any, Optional, Dict
+from typing import Any, Optional, Dict, List
 
 from model import Case
 
@@ -20,10 +20,9 @@ class MongoDB:
     def count_documents(self, case: Case) -> int:
         return self.__collection.count_documents(case.__dict__)
     
-    def insert_one(self, case: Case) -> Any:
-        assert case.valid_for_insert(), "Case is not valid for insertion"
-        return self.__collection.insert_one(case.__dict__) \
-            .inserted_id
+    def insert_many(self, cases: List[Case]) -> None:
+        assert all(c.valid_for_insert() for c in cases), "One or more cases is not valid for insertion"
+        self.__collection.insert_many([c.__dict__ for c in cases])
     
     def get_last_record_identifier(self, case: Case) -> Optional[float]:
         result: Dict[str, Any] = self.__collection.find_one(case.__dict__, sort=[("record_identifier", -1)])
