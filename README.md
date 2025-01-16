@@ -5,10 +5,7 @@ This project aims to quantify the impact of emotions in Human-Computer Interacti
 ## Project Milestones
 
 1. **Dataset Selection and Prompt Engineering:**
-    * Utilize the following datasets:
-        * SuperGLUE: For comparative analysis across various tasks (NER, lexical entailment, etc.) using apathetic and empathetic prompts.
-        * EmotionX: To analyze if the emotion expressed in the prompt is reflected in the LLM's response.
-        * SQuAD (Stanford Question Answering Dataset): To evaluate text comprehension and information retrieval in apathetic and empathetic contexts.
+    * Utilize SuperGLUE: For comparative analysis across various tasks (NER, lexical entailment, etc.) using apathetic and empathetic prompts. https://super.gluebenchmark.com/tasks
     * Formulate two pairs of prompts (apathetic/empathetic) for each dataset.
 
 2. **Model Selection and Experiment Execution:**
