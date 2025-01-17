@@ -22,8 +22,8 @@ def main() -> None:
             model=model_name, version=model_version, name="BooleanQAExperiment", batch_size=5
         )
         experiment.run()
-        evaluation: BooleanQAExperimentEvaluation = BooleanQAExperimentEvaluation(model=model_name, version=model_version)
-        evaluation.evaluate()
+        # evaluation: BooleanQAExperimentEvaluation = BooleanQAExperimentEvaluation(model=model_name, version=model_version)
+        # evaluation.evaluate()
     
 
 if __name__ == "__main__":
