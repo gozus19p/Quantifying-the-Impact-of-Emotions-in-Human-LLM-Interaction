@@ -5,10 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger",
+            "name": "Python: Inference",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/src/logic/main.py",
+            "args": ["inference"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: Evaluation",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/logic/main.py",
+            "args": ["evaluation"],
             "console": "integratedTerminal"
         }
     ]

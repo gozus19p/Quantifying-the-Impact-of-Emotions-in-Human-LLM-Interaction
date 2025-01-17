@@ -27,6 +27,15 @@ class ExperimentEvaluation(ABC):
     
     def run(self) -> None:
         LOGGER.info(f"Starting to evaluate experiment {self.__name}: model={self.__model}, version={self.__version}")
+        total_evaluations: int = self.__MONGODB.count_evaluations({
+            "experiment": self.__name,
+            "model": self.__model,
+            "version": self.__version
+        })
+        if total_evaluations > 0:
+            LOGGER.info("Experiment already evaluated. Skipping...")
+            return
+        
         cases: List[Case] = self.__MONGODB.find_many_cases(model=self.__model, version=self.__version, experiment=self.__name)
         LOGGER.info(f"Found {len(cases)} cases to evaluate")
         ground_truth: List[Dict[str, Any]] = self.get_ground_truth()

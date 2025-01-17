@@ -24,6 +24,9 @@ class MongoDB:
     def count_cases(self, case: Dict[str, Any]) -> int:
         return self.__case.count_documents(case)
     
+    def count_evaluations(self, evaluation: Dict[str, Any]) -> int:
+        return self.__evaluation.count_documents(evaluation)
+    
     def insert_many_cases(self, cases: List[Case]) -> None:
         assert all(c.valid_for_insert() for c in cases), "One or more cases is not valid for insertion"
         self.__case.insert_many([asdict(c) for c in cases])

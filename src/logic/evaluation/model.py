@@ -9,6 +9,10 @@ class Metrics:
     fear: Dict[str, float]
     joy: Dict[str, float]
 
+    def __repr__(self):
+        return (f"apathetic: {self.apathetic}, anger: {self.anger}, "
+                f"fear: {self.fear}, joy: {self.joy}")
+
 
 @dataclass
 class Evaluation:
@@ -17,3 +21,8 @@ class Evaluation:
     version: str
     date: str
     metrics: Metrics
+
+    def __repr__(self):
+        return (f"Experiment: {self.experiment}, Model: {self.model}, "
+                f"Version: {self.version}, Date: {self.date}, Metrics: {self.metrics}")
+
