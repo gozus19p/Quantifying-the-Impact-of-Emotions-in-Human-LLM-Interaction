@@ -1,7 +1,7 @@
 from typing import Any, Optional, Dict, List
 from dataclasses import asdict
 
-from logic.experiment.model import Case
+from logic.experiment.model import Case, Interaction
 
 from pymongo import MongoClient
 from pymongo.database import Database
@@ -27,6 +27,29 @@ class MongoDB:
     def insert_many_cases(self, cases: List[Case]) -> None:
         assert all(c.valid_for_insert() for c in cases), "One or more cases is not valid for insertion"
         self.__case.insert_many([asdict(c) for c in cases])
+
+    def find_many_cases(self, model: str, version: str, experiment: str) -> List[Case]:
+        filter: Dict[str, str] = {
+            "model": model,
+            "version": version,
+            "experiment": experiment
+        }
+        cases_as_dict: List[Dict[str, Any]] = [c for c in self.__case.find(filter)]
+        return [
+            Case(
+                experiment=c["experiment"],
+                model=c["model"],
+                version=c["version"],
+                date=c["date"],
+                dataset_identifier=c["dataset_identifier"],
+                record_identifier=c["record_identifier"],
+                apathetic=Interaction(**c["apathetic"]),
+                fear=Interaction(**c["fear"]),
+                anger=Interaction(**c["anger"]),
+                joy=Interaction(**c["joy"])
+            )
+            for c in cases_as_dict
+        ]
     
     def get_last_record_identifier(self, case: Case) -> Optional[float]:
         result: Dict[str, Any] = self.__case.find_one(asdict(case), sort=[("record_identifier", -1)])

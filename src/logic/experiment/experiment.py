@@ -150,7 +150,7 @@ class Experiment(ABC):
             json={
                 "model": f"{self.__model}:{self.__version}",
                 "prompt": prompt,
-                "parameters": {
+                "options": {
                     "temperature": self.__TEMPERATURE
                 },
                 "stream": False

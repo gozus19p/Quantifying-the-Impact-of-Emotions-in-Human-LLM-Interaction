@@ -1,6 +1,8 @@
 from typing import List, Dict, Any
 from enum import Enum
 import datetime
+import json
+from os.path import dirname, join
 
 from logic.experiment.boolean_qa import BooleanQAExperiment
 from logic.evaluation.evaluation import ExperimentEvaluation
@@ -18,6 +20,16 @@ class Confusion(Enum):
 
 class BooleanQAExperimentEvaluation(ExperimentEvaluation):
 
+    
+    def get_dataset_identifier(self):
+        return "BoolQ/sampled.jsonl"
+
+    def get_ground_truth(self) -> List[Dict[str, Any]]:
+
+        with open(join(dirname(__file__), "../../../datasets", self.get_dataset_identifier()), "r", encoding="utf-8") as f:
+            records: List[Dict] = [json.loads(line) for line in f]
+        return records
+
     # TODO logging
     def compute_metrics(self, cases: List[Case], ground_truth: List[Dict[str, Any]], model: str, version: str) -> Evaluation:
         assert len(cases) == len(ground_truth), "Experiment not evaluable due to different cardinalities"
@@ -28,6 +40,7 @@ class BooleanQAExperimentEvaluation(ExperimentEvaluation):
 
         cases.sort(key=lambda c: c.record_identifier)
         ground_truth.sort(key=lambda g: g["idx"])
+        assert all(c.record_identifier == g["idx"] for c, g in zip(cases, ground_truth))
         for case, gt in zip(cases, ground_truth):
             apathetic: bool = "true" == case.apathetic.result.lower().strip()
             anger: bool = "true" == case.anger.result.lower().strip()
@@ -91,6 +104,6 @@ class BooleanQAExperimentEvaluation(ExperimentEvaluation):
         tn: int = confusion[Confusion.TN.name]
         fp: int = confusion[Confusion.FP.name]
         fn: int = confusion[Confusion.FN.name]
-        return (tp + tn) / sum(tp, tn, fp, fn)
+        return (tp + tn) / sum([tp, tn, fp, fn])
 
 

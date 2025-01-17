@@ -13,23 +13,37 @@ LOGGER: logging.Logger = logging.getLogger(__name__)
 class ExperimentEvaluation(ABC):
     __model: str
     __version: str
+    __name: str
     __MONGODB: MongoDB
 
-    def __init__(self, model: str, version: str):
+    def __init__(self, model: str, version: str, name: str):
         self.__MONGODB: MongoDB = MongoDB(
             mongodb_url="mongodb://localhost:27017/thesis",
             database="thesis",
         )
         self.__model = model
         self.__version = version
+        self.__name = name
     
-    def evaluate(self) -> None:
-        LOGGER.info(f"Starting to evaluate experiment {self.experiment}: model={self.__model}, version={self.__version}")
-        cases: List[Case] = []  # TODO
-        evaluation: Evaluation = self.compute_metrics(cases=cases)
+    def run(self) -> None:
+        LOGGER.info(f"Starting to evaluate experiment {self.__name}: model={self.__model}, version={self.__version}")
+        cases: List[Case] = self.__MONGODB.find_many_cases(model=self.__model, version=self.__version, experiment=self.__name)
+        LOGGER.info(f"Found {len(cases)} cases to evaluate")
+        ground_truth: List[Dict[str, Any]] = self.get_ground_truth()
+        evaluation: Evaluation = self.compute_metrics(cases=cases, ground_truth=ground_truth, model=self.__model, version=self.__version)
         LOGGER.info("Recording evaluation")
         self.__MONGODB.record_evaluation(evaluation=evaluation)
         LOGGER.info("Done")
+
+
+    @abstractmethod
+    def get_ground_truth(self) -> List[Dict[str, Any]]:
+        pass
+
+
+    @abstractmethod
+    def get_dataset_identifier(self) -> str:
+        pass
 
 
     @abstractmethod
