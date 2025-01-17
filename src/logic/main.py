@@ -4,7 +4,8 @@ from enum import Enum
 import typer
 
 from logic.experiment.boolean_qa import BooleanQAExperiment
-from logic.evaluation.boolean_qa import BooleanQAExperimentEvaluation
+from logic.evaluation.boolean_qa import AccuracyEvaluation
+from logic.experiment.wic import WordInContextExperiment
 
 
 app = typer.Typer()
@@ -39,9 +40,17 @@ def main(mode: Mode) -> None:
                 model=model_name, version=model_version, name="BooleanQAExperiment", batch_size=5
             )
             experiment.run()
+            experiment: WordInContextExperiment = WordInContextExperiment(
+                model=model_name, version=model_version, name="WordInContextExperiment", batch_size=5
+            )
+            experiment.run()
         elif mode == Mode.EVALUATION:
-            evaluation: BooleanQAExperimentEvaluation = BooleanQAExperimentEvaluation(
-                model=model_name, version=model_version, name="BooleanQAExperiment"
+            evaluation: AccuracyEvaluation = AccuracyEvaluation(
+                model=model_name, version=model_version, name="BooleanQAExperiment", dataset_identifier="BoolQ/sampled.jsonl"
+            )
+            evaluation.run()
+            evaluation: AccuracyEvaluation = AccuracyEvaluation(
+                model=model_name, version=model_version, name="WordInContextExperiment", dataset_identifier="WiC/sampled.jsonl"
             )
             evaluation.run()
         else:

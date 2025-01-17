@@ -18,17 +18,25 @@ class Confusion(Enum):
     FN = 3
 
 
-class BooleanQAExperimentEvaluation(ExperimentEvaluation):
+class AccuracyEvaluation(ExperimentEvaluation):
+    
+    __dataset_identifier: str
+
+    def __init__(self, model: str, version: str, name: str, dataset_identifier: str):
+        super().__init__(model=model, version=version, name=name)
+        self.__dataset_identifier = dataset_identifier
 
     
     def get_dataset_identifier(self):
-        return "BoolQ/sampled.jsonl"
+        return self.__dataset_identifier
+
 
     def get_ground_truth(self) -> List[Dict[str, Any]]:
 
         with open(join(dirname(__file__), "../../../datasets", self.get_dataset_identifier()), "r", encoding="utf-8") as f:
             records: List[Dict] = [json.loads(line) for line in f]
         return records
+
 
     # TODO logging
     def compute_metrics(self, cases: List[Case], ground_truth: List[Dict[str, Any]], model: str, version: str) -> Evaluation:
