@@ -3,7 +3,8 @@ from enum import Enum
 import datetime
 
 from logic.experiment.boolean_qa import BooleanQAExperiment
-from logic.evaluation.evaluation import ExperimentEvaluation, Metrics
+from logic.evaluation.evaluation import ExperimentEvaluation
+from logic.evaluation.model import Metrics
 from logic.evaluation.model import Evaluation
 from logic.experiment.model import Case
 

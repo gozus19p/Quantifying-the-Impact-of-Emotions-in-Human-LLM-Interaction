@@ -19,29 +19,27 @@ class Experiment(ABC):
     __batch_size: int
     __model: str
     __version: str
+    __name: str
     __TEMPERATURE: float = 0.0
     __MONGODB: MongoDB
-    __date: str
 
-
-    def __init__(self, model: str, version: str, batch_size: int):
+    def __init__(self, name: str, model: str, version: str, batch_size: int):
         self.__model = model
         self.__version = version
+        self.__name = name
         self.__batch_size = batch_size
         self.__MONGODB: MongoDB = MongoDB(
-            mongodb_url="mongodb://localhost:27017/",
+            mongodb_url="mongodb://localhost:27017/thesis",
             database="thesis",
-            collection="data"
         )
-        self.__date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
     def run(self) -> None:
         tic: float = time.time()
-        LOGGER.info(f"Experiment {self.__qualname__} started: model={self.__model}, version={self.__version}, batch_size={self.__batch_size}, temperature={self.__TEMPERATURE}, dataset={self.get_dataset_identifier()}")
+        LOGGER.info(f"Experiment {self.__name} started: model={self.__model}, version={self.__version}, batch_size={self.__batch_size}, temperature={self.__TEMPERATURE}, dataset={self.get_dataset_identifier()}")
         dataset_path: str = os.path.join(
             os.path.dirname(__file__),
-            "../../datasets",
+            "../../../datasets",
             self.get_dataset_identifier()
         )
         LOGGER.info(f"Parsing dataset {dataset_path}")
@@ -88,7 +86,7 @@ class Experiment(ABC):
             # Incrementa il batch size
             batch.append(
                 Case(
-                    experiment=self.__qualname__,
+                    experiment=self.__name,
                     model=self.__model,
                     version=self.__version,
                     date=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -148,14 +146,14 @@ class Experiment(ABC):
     def __call_ollama(self, prompt: str) -> str:
         response: requests.Response = requests.post(
             f"{OLLAMA_BASE_URL}/api/generate",
-            headers={"Content-Type": "application/json"},
+            headers={"Content-Type": "application/json", "Accept": "application/json"},
             json={
-                "model": self.__model,
-                "version": self.__version,
+                "model": f"{self.__model}:{self.__version}",
                 "prompt": prompt,
                 "parameters": {
                     "temperature": self.__TEMPERATURE
-                }
+                },
+                "stream": False
             }
         )
         response.raise_for_status()

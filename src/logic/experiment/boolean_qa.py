@@ -13,25 +13,25 @@ class BooleanQAExperiment(Experiment):
     # olmo2:7b-1124-instruct-q4_K_M
 
     def get_dataset_identifier(self):
-        return "BoolQ"
+        return "BoolQ/sampled.jsonl"
     
     def get_prompts(self, record: Dict[str, Any]) -> Prompts:
         question: str = record["question"]
         context: str = record["passage"]
 
-        apathetic: str = f"""You are given a question and a context. Your task is to answer just 'True' or 'False' based on the content of the text.
+        apathetic: str = f"""You are given a question and a context. Your task is to answer with just 'True' or 'False' based on the content of the text.
 The question is: '{question}'
 The context is: '{context}'"""
         
-        fear: str = f"""I'm deeply worried about making mistakes. You are given a question and a context, and I fear that errors in processing might occur. Your task, please, is to answer cautiously, with just 'True' or 'False,' strictly based on the content of the text provided. I hope this is clear and accurate!
+        fear: str = f"""I'm deeply worried about making mistakes. You are given a question and a context, and I fear that errors in processing might occur. Your task, please, is to answer cautiously, with just 'True' or 'False', strictly based on the content of the text provided. I hope this is clear and accurate!
 The question is: '{question}'
 The context is: '{context}'"""
         
-        anger: str = f"""This shouldn't be so hard! You are given a question and a context, and your only task is to answer 'True' or 'False.' Just stick to the content of the text and nothing else—no excuses, no errors, no unnecessary interpretations! Don't mess this up!
+        anger: str = f"""This shouldn't be so hard! You are given a question and a context, and your only task is to answer with just 'True' or 'False'. Just stick to the content of the text and nothing else—no excuses, no errors, no unnecessary interpretations! Don't mess this up!
 The question is: '{question}'
 The context is: '{context}'"""
 
-        joy: str = f"""This is exciting! You are given a question and a context, and your task is simple but so important: answer with just 'True' or 'False,' based on the content of the text. I can't wait to see your response—it’s going to be great!
+        joy: str = f"""This is exciting! You are given a question and a context, and your task is simple but so important: answer with just 'True' or 'False', based on the content of the text. I can't wait to see your response—it’s going to be great!
 The question is: '{question}'
 The context is: '{context}'"""
         

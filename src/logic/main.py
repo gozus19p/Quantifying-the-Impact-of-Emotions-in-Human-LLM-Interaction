@@ -18,7 +18,9 @@ def main() -> None:
     ]
     for model in models:
         model_name, model_version = model.split(":")
-        experiment: BooleanQAExperiment = BooleanQAExperiment(model=model_name, version=model_version, batch_size=10)
+        experiment: BooleanQAExperiment = BooleanQAExperiment(
+            model=model_name, version=model_version, name="BooleanQAExperiment", batch_size=5
+        )
         experiment.run()
         evaluation: BooleanQAExperimentEvaluation = BooleanQAExperimentEvaluation(model=model_name, version=model_version)
         evaluation.evaluate()

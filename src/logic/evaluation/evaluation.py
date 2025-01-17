@@ -17,9 +17,8 @@ class ExperimentEvaluation(ABC):
 
     def __init__(self, model: str, version: str):
         self.__MONGODB: MongoDB = MongoDB(
-            mongodb_url="mongodb://localhost:27017/",
+            mongodb_url="mongodb://localhost:27017/thesis",
             database="thesis",
-            collection="data"
         )
         self.__model = model
         self.__version = version
