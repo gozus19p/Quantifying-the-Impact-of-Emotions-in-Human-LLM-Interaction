@@ -5,12 +5,6 @@ from experiment.experiment import Experiment, Prompts
 
 
 class BooleanQAExperiment(Experiment):
-    
-    # mistral:7b-instruct-q4_0
-    # llama3.1:8b-instruct-q4_0
-    # qwen2.5:7b-instruct-q4_0
-    # gemma2:9b-instruct-q4_0
-    # llama3.2:3b-instruct-q4_0
 
     def get_dataset_identifier(self):
         return "BoolQ/sampled.jsonl"

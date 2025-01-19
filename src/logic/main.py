@@ -6,6 +6,7 @@ import typer
 from logic.experiment.boolean_qa import BooleanQAExperiment
 from logic.evaluation.boolean_qa import AccuracyEvaluation
 from logic.experiment.wic import WordInContextExperiment
+from logic.experiment.rte import RTEExperiment
 
 
 app = typer.Typer()
@@ -44,6 +45,10 @@ def main(mode: Mode) -> None:
                 model=model_name, version=model_version, name="WordInContextExperiment", batch_size=5
             )
             experiment.run()
+            experiment: RTEExperiment = RTEExperiment(
+                model=model_name, version=model_version, name="RTEExperiment", batch_size=5
+            )
+            experiment.run()
         elif mode == Mode.EVALUATION:
             evaluation: AccuracyEvaluation = AccuracyEvaluation(
                 model=model_name, version=model_version, name="BooleanQAExperiment", dataset_identifier="BoolQ/sampled.jsonl"
@@ -51,6 +56,10 @@ def main(mode: Mode) -> None:
             evaluation.run()
             evaluation: AccuracyEvaluation = AccuracyEvaluation(
                 model=model_name, version=model_version, name="WordInContextExperiment", dataset_identifier="WiC/sampled.jsonl"
+            )
+            evaluation.run()
+            evaluation: AccuracyEvaluation = AccuracyEvaluation(
+                model=model_name, version=model_version, name="RTEExperiment", dataset_identifier="RTE/sampled.jsonl"
             )
             evaluation.run()
         else:

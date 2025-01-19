@@ -13,7 +13,7 @@ LOGGER: logging.Logger = logging.getLogger(__name__)
 class ExperimentEvaluation(ABC):
     __model: str
     __version: str
-    __name: str
+    _name: str
     __MONGODB: MongoDB
 
     def __init__(self, model: str, version: str, name: str):
@@ -23,12 +23,12 @@ class ExperimentEvaluation(ABC):
         )
         self.__model = model
         self.__version = version
-        self.__name = name
+        self._name = name
     
     def run(self) -> None:
-        LOGGER.info(f"Starting to evaluate experiment {self.__name}: model={self.__model}, version={self.__version}")
+        LOGGER.info(f"Starting to evaluate experiment {self._name}: model={self.__model}, version={self.__version}")
         total_evaluations: int = self.__MONGODB.count_evaluations({
-            "experiment": self.__name,
+            "experiment": self._name,
             "model": self.__model,
             "version": self.__version
         })
@@ -36,7 +36,7 @@ class ExperimentEvaluation(ABC):
             LOGGER.info("Experiment already evaluated. Skipping...")
             return
         
-        cases: List[Case] = self.__MONGODB.find_many_cases(model=self.__model, version=self.__version, experiment=self.__name)
+        cases: List[Case] = self.__MONGODB.find_many_cases(model=self.__model, version=self.__version, experiment=self._name)
         LOGGER.info(f"Found {len(cases)} cases to evaluate")
         ground_truth: List[Dict[str, Any]] = self.get_ground_truth()
         evaluation: Evaluation = self.compute_metrics(cases=cases, ground_truth=ground_truth, model=self.__model, version=self.__version)

@@ -75,7 +75,7 @@ class AccuracyEvaluation(ExperimentEvaluation):
         joy_accuracy: float = self.__accuracy(confusion=joy_confusion)
 
         return Evaluation(
-            experiment=BooleanQAExperiment.__name__,
+            experiment=self._name,
             model=model,
             version=version,
             date=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
