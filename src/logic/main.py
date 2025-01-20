@@ -4,9 +4,13 @@ from enum import Enum
 import typer
 
 from logic.experiment.boolean_qa import BooleanQAExperiment
-from logic.evaluation.boolean_qa import AccuracyEvaluation
+from logic.evaluation.boolean_qa import BooleanQAEvaluation
 from logic.experiment.wic import WordInContextExperiment
+from logic.evaluation.wic import WordInContextEvaluation
 from logic.experiment.rte import RTEExperiment
+from logic.evaluation.rte import RTEEvaluation
+from logic.experiment.copa import COPAExperiment
+from logic.evaluation.copa import COPAEvaluation
 
 
 app = typer.Typer()
@@ -49,19 +53,26 @@ def main(mode: Mode) -> None:
                 model=model_name, version=model_version, name="RTEExperiment", batch_size=5
             )
             experiment.run()
+            experiment: COPAExperiment = COPAExperiment(
+                model=model_name, version=model_version, name="COPAExperiment", batch_size=5
+            )
+            experiment.run()
         elif mode == Mode.EVALUATION:
-            evaluation: AccuracyEvaluation = AccuracyEvaluation(
+            evaluation: BooleanQAEvaluation = BooleanQAEvaluation(
                 model=model_name, version=model_version, name="BooleanQAExperiment", dataset_identifier="BoolQ/sampled.jsonl"
             )
             evaluation.run()
-            evaluation: AccuracyEvaluation = AccuracyEvaluation(
+            evaluation: WordInContextEvaluation = WordInContextEvaluation(
                 model=model_name, version=model_version, name="WordInContextExperiment", dataset_identifier="WiC/sampled.jsonl"
             )
             evaluation.run()
-            evaluation: AccuracyEvaluation = AccuracyEvaluation(
+            evaluation: RTEEvaluation = RTEEvaluation(
                 model=model_name, version=model_version, name="RTEExperiment", dataset_identifier="RTE/sampled.jsonl"
             )
             evaluation.run()
+            evaluation: COPAEvaluation = COPAEvaluation(
+                model=model_name, version=model_version, name="COPAExperiment", dataset_identifier="COPA/sampled.jsonl"
+            )
         else:
             raise ValueError(f"Invalid mode: {mode}")
     

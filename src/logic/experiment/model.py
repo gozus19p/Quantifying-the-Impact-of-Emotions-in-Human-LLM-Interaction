@@ -32,4 +32,4 @@ class Case:
 
 
     def valid_for_insert(self) -> bool:
-        return all(vars(self).values())
+        return all(v is not None for v in vars(self).values())
