@@ -73,6 +73,7 @@ def main(mode: Mode) -> None:
             evaluation: COPAEvaluation = COPAEvaluation(
                 model=model_name, version=model_version, name="COPAExperiment", dataset_identifier="COPA/sampled.jsonl"
             )
+            evaluation.run()
         else:
             raise ValueError(f"Invalid mode: {mode}")
     

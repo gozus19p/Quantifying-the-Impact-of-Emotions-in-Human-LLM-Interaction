@@ -1,3 +1,5 @@
+import re
+
 from logic.evaluation.accuracy import AccuracyEvaluation, Confusion
 
 
@@ -15,12 +17,28 @@ class COPAEvaluation(AccuracyEvaluation):
 
 
     def detect(self, result: str, expected: str) -> Confusion:
-        if expected == result == "1":
+        expected_option_1: bool = expected == "0"
+        expected_option_2: bool = expected == "1"
+        if not expected_option_1 and not expected_option_2:
+            raise ValueError(f"Invalid expected value: {expected}")
+        
+        result_option_1: bool = re.search(r"\boption 1\b", result, re.IGNORECASE)
+        result_option_2: bool = re.search(r"\boption 2\b", result, re.IGNORECASE)
+        if not result_option_1 and not result_option_2:
+            return Confusion.FN
+        
+        expected_bool: bool = True if expected_option_1 else False
+        result_bool: bool = True if result_option_1 else False
+
+        if expected_bool == result_bool == True:
             return Confusion.TP
-        if expected == result == "0":
+        
+        if expected_bool == result_bool == False:
             return Confusion.TN
-        if expected == "1" and result == "0":
-            return Confusion.FP
+        
+        if expected_bool == False and result_bool == True:
+            return Confusion.FP    
+    
         return Confusion.FN
 
 

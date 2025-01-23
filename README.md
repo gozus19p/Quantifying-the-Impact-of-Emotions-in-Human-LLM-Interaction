@@ -2,6 +2,22 @@
 
 This project aims to quantify the impact of emotions in Human-Computer Interaction (HCI) between humans and Large Language Models (LLMs). The central hypothesis is that apathetic prompts lead to better performance across various tasks compared to empathetic prompts.
 
+## Status
+
+| Task | Status | Notes |
+| ---- | ------ | ----- |
+| AX-b | To do  |       |
+| AX-g | To do  |       |
+| BoolQ | Completed |   |
+| CB   | To do  |       |
+| COPA | Doing  |       |
+| MultiRC | To do |     |
+| ReCoRD | To do |      |
+| RTE | Completed |     |
+| WiC | Completed |     |
+| WSC | To do |         |
+
+
 ## Project Milestones
 
 1. **Dataset Selection and Prompt Engineering:**
@@ -25,8 +41,6 @@ This project aims to quantify the impact of emotions in Human-Computer Interacti
 ## Datasets
 
 * **SuperGLUE:** A benchmark suite for evaluating the performance of language models across a range of tasks.
-* **EmotionX:** A dataset for analyzing emotions in textual conversations.
-* **SQuAD (Stanford Question Answering Dataset):** A reading comprehension dataset consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage.
 
 ## References
 
