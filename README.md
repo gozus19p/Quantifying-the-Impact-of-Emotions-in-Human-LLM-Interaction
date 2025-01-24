@@ -8,14 +8,14 @@ This project aims to quantify the impact of emotions in Human-Computer Interacti
 | ---- | ------ | ----- |
 | AX-b | To do  |       |
 | AX-g | To do  |       |
-| BoolQ | Completed |   |
-| CB   | To do  |       |
-| COPA | Doing  |       |
 | MultiRC | To do |     |
 | ReCoRD | To do |      |
+| CB   | Prepared  |    |
+| WSC | Prepared |      |
+| BoolQ | Completed |   |
+| COPA | Completed  |   |
 | RTE | Completed |     |
 | WiC | Completed |     |
-| WSC | To do |         |
 
 
 ## Project Milestones

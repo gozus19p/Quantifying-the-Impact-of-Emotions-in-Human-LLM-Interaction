@@ -11,6 +11,11 @@ from logic.experiment.rte import RTEExperiment
 from logic.evaluation.rte import RTEEvaluation
 from logic.experiment.copa import COPAExperiment
 from logic.evaluation.copa import COPAEvaluation
+from logic.experiment.wsc import WinogradSchemaChallengeExperiment
+from logic.evaluation.wsc import WinogradSchemaChallengeEvaluation
+from logic.experiment.cb import CBExperiment
+from logic.evaluation.cb import CBEvaluation
+
 
 
 app = typer.Typer()
@@ -57,6 +62,14 @@ def main(mode: Mode) -> None:
                 model=model_name, version=model_version, name="COPAExperiment", batch_size=5
             )
             experiment.run()
+            experiment: WinogradSchemaChallengeExperiment = WinogradSchemaChallengeExperiment(
+                model=model_name, version=model_version, name="WinogradSchemaChallengeExperiment", batch_size=5
+            )
+            experiment.run()
+            experiment: CBExperiment = CBExperiment(
+                model=model_name, version=model_version, name="CBExperiment", batch_size=5
+            )
+            experiment.run()
         elif mode == Mode.EVALUATION:
             evaluation: BooleanQAEvaluation = BooleanQAEvaluation(
                 model=model_name, version=model_version, name="BooleanQAExperiment", dataset_identifier="BoolQ/sampled.jsonl"
@@ -72,6 +85,14 @@ def main(mode: Mode) -> None:
             evaluation.run()
             evaluation: COPAEvaluation = COPAEvaluation(
                 model=model_name, version=model_version, name="COPAExperiment", dataset_identifier="COPA/sampled.jsonl"
+            )
+            evaluation.run()
+            evaluation: WinogradSchemaChallengeEvaluation = WinogradSchemaChallengeEvaluation(
+                model=model_name, version=model_version, name="WinogradSchemaChallengeExperiment", dataset_identifier="WSC/sampled.jsonl"
+            )
+            evaluation.run()
+            evaluation: CBEvaluation = CBEvaluation(
+                model=model_name, version=model_version, name="CBExperiment", dataset_identifier="CB/sampled.jsonl"
             )
             evaluation.run()
         else:
