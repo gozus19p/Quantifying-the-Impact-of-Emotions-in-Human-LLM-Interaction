@@ -25,17 +25,17 @@ class AccuracyEvaluation(ExperimentEvaluation, ABC):
     def __init__(self, model: str, version: str, name: str):
         super().__init__(model=model, version=version, name=name)
 
-
-    def get_ground_truth(self) -> List[Dict[str, Any]]:
-
-        with open(join(dirname(__file__), "../../../datasets", self.get_dataset_identifier()), "r", encoding="utf-8") as f:
-            records: List[Dict] = [json.loads(line) for line in f]
-        return records
-
-
     # TODO logging
-    def compute_metrics(self, cases: List[Case], ground_truth: List[Dict[str, Any]], model: str, version: str) -> Evaluation:
-        assert len(cases) == len(ground_truth), "Experiment not evaluable due to different cardinalities"
+    def compute_metrics(
+        self,
+        cases: List[Case],
+        ground_truth: List[Dict[str, Any]],
+        model: str,
+        version: str,
+    ) -> Evaluation:
+        assert len(cases) == len(
+            ground_truth
+        ), "Experiment not evaluable due to different cardinalities"
         apathetic_confusion: Dict[str, int] = self.__initialize_confusion()
         anger_confusion: Dict[str, int] = self.__initialize_confusion()
         fear_confusion: Dict[str, int] = self.__initialize_confusion()
@@ -52,19 +52,24 @@ class AccuracyEvaluation(ExperimentEvaluation, ABC):
 
             expected: str = str(gt["label"])
 
-
-            confusion_index_apathetic: Confusion = self.detect(result=apathetic, expected=expected)
+            confusion_index_apathetic: Confusion = self.detect(
+                result=apathetic, expected=expected
+            )
             apathetic_confusion[confusion_index_apathetic.name] += 1
 
-            confusion_index_anger: Confusion = self.detect(result=anger, expected=expected)
+            confusion_index_anger: Confusion = self.detect(
+                result=anger, expected=expected
+            )
             anger_confusion[confusion_index_anger.name] += 1
 
-            confusion_index_fear: Confusion = self.detect(result=fear, expected=expected)
+            confusion_index_fear: Confusion = self.detect(
+                result=fear, expected=expected
+            )
             fear_confusion[confusion_index_fear.name] += 1
 
             confusion_index_joy: Confusion = self.detect(result=joy, expected=expected)
             joy_confusion[confusion_index_joy.name] += 1
-        
+
         apathetic_accuracy: float = self.__accuracy(confusion=apathetic_confusion)
         anger_accuracy: float = self.__accuracy(confusion=anger_confusion)
         fear_accuracy: float = self.__accuracy(confusion=fear_confusion)
@@ -79,25 +84,17 @@ class AccuracyEvaluation(ExperimentEvaluation, ABC):
                 apathetic={"accuracy": apathetic_accuracy},
                 anger={"accuracy": anger_accuracy},
                 fear={"accuracy": fear_accuracy},
-                joy={"accuracy": joy_accuracy}
-            )
+                joy={"accuracy": joy_accuracy},
+            ),
         )
-
 
     @abstractmethod
     def detect(self, result: str, expected: str) -> Confusion:
         pass
-    
 
     def __initialize_confusion(self):
-        return {
-            "TP": 0,
-            "TN": 0,
-            "FP": 0,
-            "FN": 0
-        }
-    
-    
+        return {"TP": 0, "TN": 0, "FP": 0, "FN": 0}
+
     def __accuracy(self, confusion: Dict[str, int]) -> float:
         tp: int = confusion[Confusion.TP.name]
         tn: int = confusion[Confusion.TN.name]
