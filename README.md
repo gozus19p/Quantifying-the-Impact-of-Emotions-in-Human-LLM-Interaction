@@ -9,7 +9,7 @@ This project aims to quantify the impact of emotions in Human-Computer Interacti
 | AX-b | To do  |       |
 | AX-g | To do  |       |
 | MultiRC | To do |     |
-| ReCoRD | To evaluate |      |
+| ReCoRD | Completed | Defined a custom metric called "mean BLEU".     |
 | CB   | Completed  |    |
 | WSC | Completed |      |
 | BoolQ | Completed |   |

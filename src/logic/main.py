@@ -3,6 +3,7 @@ from typing import List
 from enum import Enum
 import typer
 
+from logic.evaluation.record import ReCoRDEvaluation
 from logic.experiment.boolean_qa import BooleanQAExperiment
 from logic.evaluation.boolean_qa import BooleanQAEvaluation
 from logic.experiment.record import ReCoRDExperiment
@@ -140,6 +141,13 @@ def main(mode: Mode) -> None:
                 version=model_version,
                 name="CBExperiment",
                 dataset_identifier="CB/sampled.jsonl",
+            )
+            evaluation.run()
+            evaluation: ReCoRDEvaluation = ReCoRDEvaluation(
+                model=model_name,
+                version=model_version,
+                name="ReCoRDExperiment",
+                dataset_identifier="ReCoRD/sampled.jsonl",
             )
             evaluation.run()
         else:

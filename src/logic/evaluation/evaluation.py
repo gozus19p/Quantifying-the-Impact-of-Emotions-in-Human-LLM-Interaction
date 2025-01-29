@@ -27,6 +27,12 @@ class ExperimentEvaluation(ABC):
         self.__version = version
         self._name = name
 
+    def get_model(self) -> str:
+        return self.__model
+
+    def get_version(self) -> str:
+        return self.__version
+
     def run(self) -> None:
         LOGGER.info(
             f"Starting to evaluate experiment {self._name}: model={self.__model}, version={self.__version}"
@@ -44,10 +50,7 @@ class ExperimentEvaluation(ABC):
         LOGGER.info(f"Found {len(cases)} cases to evaluate")
         ground_truth: List[Dict[str, Any]] = self.get_ground_truth()
         evaluation: Evaluation = self.compute_metrics(
-            cases=cases,
-            ground_truth=ground_truth,
-            model=self.__model,
-            version=self.__version,
+            cases=cases, ground_truth=ground_truth
         )
         LOGGER.info("Recording evaluation")
         self.__MONGODB.record_evaluation(evaluation=evaluation)
