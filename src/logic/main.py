@@ -3,7 +3,9 @@ from typing import List
 from enum import Enum
 import typer
 
+from logic.evaluation.ax_g import AXGEvaluation
 from logic.evaluation.record import ReCoRDEvaluation
+from logic.experiment.ax_g import AXGExperiment
 from logic.experiment.boolean_qa import BooleanQAExperiment
 from logic.evaluation.boolean_qa import BooleanQAEvaluation
 from logic.experiment.record import ReCoRDExperiment
@@ -98,6 +100,13 @@ def main(mode: Mode) -> None:
                 batch_size=1,
             )
             experiment.run()
+            experiment: AXGExperiment = AXGExperiment(
+                model=model_name,
+                version=model_version,
+                name="AXGExperiment",
+                batch_size=5,
+            )
+            experiment.run()
         elif mode == Mode.EVALUATION:
             evaluation: BooleanQAEvaluation = BooleanQAEvaluation(
                 model=model_name,
@@ -148,6 +157,13 @@ def main(mode: Mode) -> None:
                 version=model_version,
                 name="ReCoRDExperiment",
                 dataset_identifier="ReCoRD/sampled.jsonl",
+            )
+            evaluation.run()
+            evaluation: AXGEvaluation = AXGEvaluation(
+                model=model_name,
+                version=model_version,
+                name="AXGExperiment",
+                dataset_identifier="AX-g/sampled.jsonl",
             )
             evaluation.run()
         else:
