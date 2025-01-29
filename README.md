@@ -9,7 +9,7 @@ This project aims to quantify the impact of emotions in Human-Computer Interacti
 | AX-b | To do  |       |
 | AX-g | To do  |       |
 | MultiRC | To do |     |
-| ReCoRD | To do |      |
+| ReCoRD | To evaluate |      |
 | CB   | Completed  |    |
 | WSC | Completed |      |
 | BoolQ | Completed |   |
