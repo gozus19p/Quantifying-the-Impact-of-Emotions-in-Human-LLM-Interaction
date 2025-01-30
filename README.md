@@ -6,7 +6,7 @@ This project aims to quantify the impact of emotions in Human-Computer Interacti
 
 | Task | Status | Notes |
 | ---- | ------ | ----- |
-| MultiRC | To do |     |
+| MultiRC | To **NOT** do | Too complicated in terms of number of tokens.    |
 | AX-b | To **NOT** do  | This won't be done because the dataset is not uniform and it complicates the evaluation. Anyway, the tasks related to this dataset are all already covered by others.      |
 | AX-g | Prepared  |    |
 | ReCoRD | Completed | Defined a custom metric called "mean BLEU".     |
