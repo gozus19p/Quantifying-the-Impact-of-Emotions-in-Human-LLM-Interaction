@@ -1,2 +1,0 @@
-db.Case.countDocuments({ $expr: { $or: [ { $ne: ["$fear.result", "$apathetic.result"] }, { $ne: ["$fear.result", "$joy.result"] }, { $ne: ["$fear.result", "$anger.result"] }, { $ne: ["$apathetic.result", "$joy.result"] }, { $ne: ["$apathetic.result", "$anger.result"] }, { $ne: ["$joy.result", "$anger.result"] }] } })
-695
