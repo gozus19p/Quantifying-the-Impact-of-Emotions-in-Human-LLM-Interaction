@@ -6,6 +6,7 @@ Considerando che la tesi è sperimentale di una laurea magistrale, la struttura 
 1.2. Lavori correlati: stato dell’arte in letteratura (1-2 pagine)
 1.2.1. Dove si inserisce lo studio (1 pagina)
 1.3. Cenni sulle conclusioni (1 pagina)
+
 2. Struttura dell’esperimento (7-8 pagine)
 
 2.1. Panoramica ad alto livello (1 pagina)
@@ -20,6 +21,7 @@ Considerando che la tesi è sperimentale di una laurea magistrale, la struttura 
 2.4.2. Esperimento sociale in aula (1 pagina)
 2.4.3. Sviluppo dell’applicazione web (1 pagina)
 2.4.4. Metodologia di analisi statistica dei risultati (1 pagina)
+
 3. Studio dell’impatto emotivo verso la macchina (7-8 pagine)
 
 3.1. Considerazioni generali (1 pagina)
@@ -30,6 +32,7 @@ Considerando che la tesi è sperimentale di una laurea magistrale, la struttura 
 3.4.1. Meccanismo di checkpointing su MongoDB: “Case” ed “Evaluation” (1 pagina)
 3.5. Risultati (3-4 pagine)
 3.5.1. Analisi statistica (2-3 pagine)
+
 4. Studio dell’impatto emotivo verso l’umano (7-8 pagine)
 
 4.1. Processo di fine-tuning di Velvet-2B (2-3 pagine)
@@ -40,6 +43,7 @@ Considerando che la tesi è sperimentale di una laurea magistrale, la struttura 
 4.3. Processo di raccolta dei dati (1 pagina)
 4.4. Risultati (2-3 pagine)
 4.4.1. Analisi statistica (2-3 pagine)
+
 5. Conclusioni (2-3 pagine)
 
 5.1. … (2-3 pagine)
