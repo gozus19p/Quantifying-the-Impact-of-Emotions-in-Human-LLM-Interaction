@@ -34,16 +34,23 @@ logger.info(f"{model_name} loaded")
 def train() -> None:
 
     training_args: TrainingArguments = TrainingArguments(
-        output_dir="./lora_fine_tuned_model",
-        evaluation_strategy="epoch",
-        save_strategy="epoch",
-        per_device_train_batch_size=4,
-        per_device_eval_batch_size=4,
-        num_train_epochs=3,
+        output_dir="./velvet_lora",
+        evaluation_strategy="steps",  # Valutazione più frequente per fermare il training prima
+        eval_steps=500,  # Frequenza della valutazione
+        save_strategy="steps",  # Salvataggio più frequente
+        save_steps=1000,  # Salva ogni 1000 step
+        save_total_limit=2,  # Mantieni solo gli ultimi 2 checkpoint per risparmiare spazio
+        per_device_train_batch_size=1,  # Riduci il batch per evitare memory overload su Mac
+        per_device_eval_batch_size=1,
+        gradient_accumulation_steps=8,  # Simula batch più grandi senza pesare sulla RAM
+        num_train_epochs=5,  # Riduci il numero di epoche per velocizzare il training
         logging_dir="./logs",
-        logging_steps=500,
-        save_total_limit=2,
-        bf16=True,  # Usa la mezza precisione per migliorare l'efficienza
+        logging_steps=200,  # Frequenza dei log
+        fp16=False,  # NO FP16 su MPS! Usa invece bf16 (se disponibile)
+        bf16=True,  # Usa bfloat16 se disponibile
+        optim="adamw_torch",  # Ottimizzatore più efficiente su MPS
+        warmup_ratio=0.1,  # Warmup per stabilizzare l'inizio del training
+        report_to="none",  # Disabilita reporting automatico (come WandB)
     )
 
     tokenized_dataset: Dataset = get_dataset()["train"].train_test_split(
@@ -51,6 +58,7 @@ def train() -> None:
     )
 
     model: PeftModel = get_peft_model_for_training()
+
     trainer: Trainer = Trainer(
         model=model,
         args=training_args,
@@ -60,13 +68,13 @@ def train() -> None:
     )
     trainer.train()
 
-    input_text = "Quali sono i principali obiettivi dell'intelligenza artificiale?"
-    input_ids = TOKENIZER(input_text, return_tensors="pt").input_ids
-    output = model.generate(input_ids, max_length=100)
-    print(TOKENIZER.decode(output[0], skip_special_tokens=True))
-
     model.save_pretrained("./lora_fine_tuned_model")
     TOKENIZER.save_pretrained("./lora_fine_tuned_model")
+
+    input_text = "<s>Utente: Quali sono i principali obiettivi dell'intelligenza artificiale?</s>\n<s>Assistente: "
+    embeddings = TOKENIZER(input_text, return_tensors="pt").to("mps")
+    output = model.generate(embeddings["input_ids"], max_new_tokens=500)
+    print(TOKENIZER.decode(output[0]))
 
 
 def get_dataset() -> Dataset:

@@ -71,7 +71,9 @@ def generate(iteration: ChatIteration) -> str:
     with torch.no_grad():
         logger.info("Generating answer")
         output: torch.Tensor = VELVET.generate(
-            input_ids=embeddings["input_ids"], max_new_tokens=500
+            input_ids=embeddings["input_ids"],
+            max_new_tokens=500,
+            attention_mask=embeddings["attention_mask"],
         )
 
     logger.info("Decoding")
