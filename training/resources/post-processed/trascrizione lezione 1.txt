@@ -1,0 +1,49 @@
+Benvenuti alla lezione sui fondamenti di intelligenza artificiale. Gli argomenti che tratteremo in questa lezione sono: perché oggi è così importante parlare di intelligenza artificiale, quali sono stati gli approcci, gli algoritmi e le metodologie che nel corso degli anni hanno portato ai risultati che caratterizzano le soluzioni di intelligenza artificiale attuali. Infine, cercheremo di dare alcune definizioni per comprendere meglio che cosa sia l'intelligenza artificiale.
+
+Gli obiettivi di questa lezione sono:
+- Comprendere l'importanza dell'utilizzo dell'intelligenza artificiale nel contesto attuale.
+- Analizzare l'impatto dell'intelligenza artificiale sulle evoluzioni tecnologiche e sociali.
+- Esaminare le caratteristiche fondamentali dei sistemi basati sull'intelligenza artificiale, confrontando diversi approcci e valutandone i limiti e i vantaggi.
+
+### Esempi di utilizzo dell'intelligenza artificiale
+
+Parlando di intelligenza artificiale oggi, possiamo osservare numerosi esempi di utilizzo quotidiano. Nella slide potete notare tre tipologie di sistemi basati su intelligenza artificiale. Pensiamo, ad esempio, ai navigatori satellitari: questi suggeriscono percorsi ottimali grazie a modelli che analizzano dati in tempo reale per fornire alternative migliori. Un altro esempio è il riconoscimento facciale o delle impronte digitali, tecnologie che utilizziamo quotidianamente per sbloccare i nostri dispositivi. Gli algoritmi di intelligenza artificiale, in questo caso, sono addestrati per riconoscere caratteristiche uniche del volto o dell'impronta dell'utente.
+
+Un ulteriore esempio è rappresentato dai sistemi di riconoscimento facciale in ambito aeroportuale, che permettono di bypassare i controlli di imbarco. I primi sistemi di intelligenza artificiale ampiamente utilizzati includevano, ad esempio, quelli per il riconoscimento delle targhe in autostrada. La realtà odierna è permeata da soluzioni di intelligenza artificiale che apprendono da grandi quantità di dati etichettati per imitare comportamenti umani.
+
+### Motivi della rapida evoluzione dell'intelligenza artificiale
+
+Il rapido sviluppo dell'intelligenza artificiale non è dovuto a una novità concettuale, ma alla disponibilità di enormi quantità di dati e a un incremento delle capacità computazionali. L'introduzione di Internet ha portato a una crescita esponenziale dei dati disponibili, mentre l'innovazione nelle infrastrutture di calcolo ha permesso l'addestramento di modelli sempre più complessi. Questi fattori hanno determinato l'attuale espansione delle tecnologie di intelligenza artificiale.
+
+L'intelligenza artificiale ha un impatto significativo anche dal punto di vista economico. Analizzando il mercato italiano, si osserva una crescita annua del 52%, con un valore stimato di 1.760 milioni di euro e previsioni di crescita fino a 2.620 milioni nei prossimi cinque anni.
+
+Un altro indicatore dell'interesse crescente verso l'intelligenza artificiale è il numero di ricerche effettuate su termini come "machine learning" e "deep learning". Con l'avvento di ChatGPT, le ricerche relative all'intelligenza artificiale sono aumentate notevolmente, dimostrando il crescente interesse del pubblico per queste tecnologie.
+
+### Storia dell'intelligenza artificiale
+
+La storia dell'intelligenza artificiale è lunga e articolata, coinvolgendo molteplici discipline. Già nell'antichità esisteva il desiderio di creare entità artificiali in grado di imitare gli esseri umani, come nel caso del gigante di bronzo Talos e del Golem della tradizione ebraica.
+
+Nel XX secolo, diversi studiosi hanno contribuito allo sviluppo delle teorie legate all'intelligenza. Charles Spearman, nel 1923, ha formulato la teoria dell'intelligenza a due fattori, mentre Howard Gardner, nel 1983, ha introdotto la teoria delle intelligenze multiple. Altri ricercatori, come Robert Sternberg e Daniel Goleman, hanno proposto modelli che hanno influenzato le moderne applicazioni dell'intelligenza artificiale.
+
+Dal punto di vista tecnologico, le basi dell'intelligenza artificiale moderna risalgono ai lavori di Alan Turing, che nel 1950 si chiese se una macchina potesse pensare. Il termine "intelligenza artificiale" fu coniato nel 1956 da John McCarthy durante la conferenza di Dartmouth. Da allora, si sono susseguiti diversi approcci, con periodi di grande sviluppo alternati a fasi di stallo (i cosiddetti "inverni dell'IA"). L'attuale fase di crescita è legata all'aumento della potenza di calcolo e alla disponibilità di grandi moli di dati.
+
+### Definizioni di intelligenza artificiale
+
+Per comprendere cos'è l'intelligenza artificiale, possiamo rifarci a due concetti principali:
+1. **Intelligenza artificiale forte**: si riferisce a sistemi capaci di replicare le capacità cognitive umane in modo completo. Questo approccio, legato alla psicologia cognitiva, punta alla comprensione e riproduzione del comportamento intelligente.
+2. **Intelligenza artificiale debole**: riguarda sistemi progettati per svolgere compiti specifici, come il riconoscimento facciale o la guida autonoma. L'obiettivo è riprodurre alcuni aspetti dell'intelligenza umana senza necessariamente comprenderne i meccanismi.
+
+Le intelligenze artificiali possono inoltre essere classificate in base al loro funzionamento:
+- Sistemi che **pensano** come gli esseri umani
+- Sistemi che **pensano** razionalmente
+- Sistemi che **agiscono** come gli esseri umani
+- Sistemi che **agiscono** razionalmente
+
+Gli approcci razionali utilizzano modelli matematici per definire inferenze logiche, mentre gli approcci basati sull'imitazione del comportamento umano mirano a riprodurre le capacità cognitive.
+
+### Conclusioni
+
+In questa lezione abbiamo visto come l'intelligenza artificiale sia ormai parte integrante della nostra vita quotidiana, con applicazioni in numerosi settori. Abbiamo esaminato la sua storia, le definizioni fondamentali e i motivi della sua crescita esponenziale.
+
+Grazie per l'attenzione.
+
