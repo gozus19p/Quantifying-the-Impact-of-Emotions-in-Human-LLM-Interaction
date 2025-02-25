@@ -31,7 +31,7 @@ VELVET: AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(
 logger.info(f"{model_name} loaded")
 
 
-def train() -> None:
+def train(emotion: str) -> None:
 
     training_args: TrainingArguments = TrainingArguments(
         output_dir="./velvet_lora",
@@ -43,7 +43,7 @@ def train() -> None:
         per_device_train_batch_size=1,  # Riduci il batch per evitare memory overload su Mac
         per_device_eval_batch_size=1,
         gradient_accumulation_steps=8,  # Simula batch più grandi senza pesare sulla RAM
-        num_train_epochs=5,  # Riduci il numero di epoche per velocizzare il training
+        num_train_epochs=10,  # Riduci il numero di epoche per velocizzare il training
         logging_dir="./logs",
         logging_steps=200,  # Frequenza dei log
         fp16=False,  # NO FP16 su MPS! Usa invece bf16 (se disponibile)
@@ -53,9 +53,12 @@ def train() -> None:
         report_to="none",  # Disabilita reporting automatico (come WandB)
     )
 
-    tokenized_dataset: Dataset = get_dataset()["train"].train_test_split(
-        test_size=0.2, seed=42
+    dataset_file_path: str = os.path.join(
+        os.path.dirname(__file__), "emotions", f"{emotion}_synthetic_dataset.jsonl"
     )
+    tokenized_dataset: Dataset = get_dataset(data_file_path=dataset_file_path)[
+        "train"
+    ].train_test_split(test_size=0.2, seed=42)
 
     model: PeftModel = get_peft_model_for_training()
 
@@ -68,22 +71,12 @@ def train() -> None:
     )
     trainer.train()
 
-    model.save_pretrained("./lora_fine_tuned_model")
-    TOKENIZER.save_pretrained("./lora_fine_tuned_model")
-
-    input_text = "<s>Utente: Quali sono i principali obiettivi dell'intelligenza artificiale?</s>\n<s>Assistente: "
-    embeddings = TOKENIZER(input_text, return_tensors="pt").to("mps")
-    output = model.generate(embeddings["input_ids"], max_new_tokens=500)
-    print(TOKENIZER.decode(output[0]))
+    model.save_pretrained(f"./Velvet-14B-{emotion}")
+    TOKENIZER.save_pretrained(f"./Velvet-14B-{emotion}")
 
 
-def get_dataset() -> Dataset:
-    dataset: Dataset = load_dataset(
-        "json",
-        data_files=os.path.join(
-            os.path.dirname(__file__), "resources/training data/lezione1.jsonl"
-        ),
-    )
+def get_dataset(data_file_path: str) -> Dataset:
+    dataset: Dataset = load_dataset("json", data_files=data_file_path)
     formatted_dataset: Dataset = dataset.map(format_velvet_conversation)
 
     tokenized_dataset: Dataset = formatted_dataset.map(tokenize, batched=True)
@@ -104,8 +97,8 @@ def get_peft_model_for_training() -> PeftModel:
 
 def format_velvet_conversation(example: Dict[str, str]):
     return {
-        "input_text": f"<s>Utente: {example['question']}</s>\n<s>Assistente: ",
-        "target_text": f"{example['answer']}</s>",
+        "input_text": f"<s>Utente: {example['Utente']}</s>\n<s>Assistente: ",
+        "target_text": f"{example['Assistente']}</s>",
     }
 
 
@@ -121,4 +114,4 @@ def tokenize(example: Dict[str, str]) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    train()
+    train(emotion="joy")
