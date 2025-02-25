@@ -1,0 +1,35 @@
+Benvenuti alla lezione sugli agenti intelligenti. Gli argomenti che tratteremo in questa lezione sono gli agenti intelligenti: definiremo il loro significato, ne analizzeremo la struttura e cercheremo di comprendere i vari tipi di agenti.
+
+Gli obiettivi che raggiungeremo in questa lezione sono: introdurre l'intelligenza come un insieme di capacità differenti, definire l'intelligenza artificiale come la scienza della progettazione di agenti intelligenti. Occorre precisare che spesso si associa l'intelligenza artificiale alle innovazioni e ai sistemi basati sul machine learning, come ChatGPT. Tuttavia, in questa lezione cercheremo di comprendere il concetto di intelligenza artificiale nel contesto della progettazione di agenti intelligenti, seguendo l'approccio presentato nel libro "Intelligenza artificiale: un approccio moderno" di Russell e Norvig. Ci baseremo in particolare sull'edizione del 2021, che è stata suddivisa in due volumi: il tema di questa lezione si trova nel primo volume, nel capitolo 2.
+
+Definiremo quindi che cos'è un agente intelligente e analizzeremo la visione degli agenti come un quadro di riferimento alternativo rispetto all'analisi dei sistemi tradizionali. L'obiettivo è comprendere il concetto di agenti intelligenti e il ruolo che questi svolgono nell'ambito dell'intelligenza artificiale. Tuttavia, lo faremo in modo astratto, cercando di capire i concetti fondamentali sottesi a questo approccio.
+
+Partiamo dalla definizione di agente intelligente: l'idea è che l'intelligenza riguardi principalmente l'azione razionale. Idealmente, un agente intelligente intraprende, in ogni situazione, l'azione migliore possibile per raggiungere un obiettivo desiderato. Questo concetto si traduce in una misura di prestazione che determina quale sia la scelta ottimale. Studieremo, quindi, il problema della costruzione di agenti intelligenti secondo questa definizione, ovvero agenti capaci di compiere azioni razionali.
+
+L'obiettivo dell'intelligenza artificiale, in questo contesto, non è quello di addestrare sistemi come nel machine learning, ma di sviluppare un insieme di principi di progettazione per la creazione di agenti di successo che possano essere definiti intelligenti. L'intelligenza artificiale moderna ha subito un'evoluzione dai suoi principi originari fino a oggi. Tuttavia, è importante comprendere il concetto di azione razionale e cosa significhi che un agente sia in grado di prendere le decisioni migliori. Non sempre, infatti, è necessario ricorrere alle reti neurali o agli approcci di machine learning per risolvere un problema.
+
+Vedremo alcuni esempi di agenti intelligenti e analizzeremo il ruolo del test di Turing nella definizione di intelligenza artificiale. Proposto da Alan Turing nel 1950, il test di Turing cerca di rispondere alla domanda: "Le macchine possono pensare?". Il test si basa su un'idea tratta dalla psicologia: un giudice deve determinare, attraverso una serie di domande e risposte, se l'interlocutore è un essere umano o una macchina. Se la macchina riesce a ingannare il giudice, allora si può considerare che abbia una forma di intelligenza.
+
+Un agente è qualsiasi sistema che percepisce il proprio ambiente attraverso sensori e agisce su di esso mediante attuatori. Nella rappresentazione classica, un agente è descritto come un sistema dotato di sensori, che acquisiscono informazioni dall'ambiente, e di attuatori, che eseguono azioni per influenzare l'ambiente stesso. L'agente può essere un robot, un software, un sistema di automazione, ecc. L'ambiente fornisce input all'agente, che elabora tali informazioni e decide quali azioni compiere.
+
+Per formalizzare questo concetto, possiamo considerare la sequenza percettiva, ovvero l'insieme delle percezioni che un agente acquisisce nel tempo. La funzione agente descrive la corrispondenza tra una sequenza percettiva e un'azione specifica. Possiamo immaginare questa relazione come una tabella che associa a ogni sequenza percettiva un'azione da eseguire.
+
+Un esempio semplice di agente è un aspirapolvere autonomo: la sua sequenza percettiva include informazioni sulla posizione e sulla presenza di sporco, e la sua funzione agente determina se deve muoversi o aspirare. Un altro esempio è un termostato, che percepisce la temperatura dell'ambiente e attiva o disattiva il riscaldamento in base a una soglia predefinita.
+
+Un agente razionale è un agente che sceglie l'azione migliore per massimizzare una misura di prestazione. La razionalità dipende da quattro fattori: la misura di prestazione, la conoscenza pregressa dell'agente sull'ambiente, le azioni disponibili e la sequenza percettiva acquisita. Tuttavia, la razionalità non deve essere confusa con l'onniscienza: un agente razionale non conosce necessariamente tutte le conseguenze delle proprie azioni, ma deve essere in grado di adattarsi e migliorare il proprio comportamento in base all'esperienza.
+
+L'ambiente in cui opera un agente può avere diverse caratteristiche: può essere completamente o parzialmente osservabile, deterministico o stocastico, statico o dinamico, episodico o sequenziale, discreto o continuo. Ad esempio, un ambiente completamente osservabile fornisce tutte le informazioni necessarie all'agente per prendere decisioni ottimali, mentre un ambiente parzialmente osservabile limita la conoscenza disponibile. Un ambiente deterministico è completamente prevedibile, mentre un ambiente stocastico introduce elementi di incertezza.
+
+Esistono diversi tipi di agenti intelligenti:
+1. **Agenti reattivi semplici**: selezionano un'azione in base alla percezione corrente, ignorando la storia delle percezioni passate.
+2. **Agenti reattivi basati su un modello**: tengono traccia dello stato del mondo e utilizzano un modello interno per prevedere l'evoluzione dell'ambiente.
+3. **Agenti basati su obiettivi**: scelgono le azioni in funzione del raggiungimento di determinati obiettivi.
+4. **Agenti basati sull'utilità**: oltre agli obiettivi, utilizzano una funzione di utilità per valutare la preferenza tra diversi stati del mondo.
+5. **Agenti di apprendimento**: migliorano le proprie prestazioni nel tempo attraverso l'apprendimento.
+
+La rappresentazione delle conoscenze di un agente può essere di tipo atomico, fattorizzato o strutturato. Nella rappresentazione atomica, uno stato è una "scatola nera" senza struttura interna. Nella rappresentazione fattorizzata, uno stato è descritto mediante attributi distinti. Nella rappresentazione strutturata, uno stato include oggetti e relazioni tra essi.
+
+In conclusione, abbiamo definito cos'è un agente, esaminato la sua funzione agente e discusso diversi tipi di agenti intelligenti. Abbiamo visto che un agente razionale massimizza il valore atteso della misura di prestazione e che la progettazione degli agenti dipende dalle caratteristiche dell'ambiente. Infine, abbiamo introdotto i concetti di apprendimento e rappresentazione della conoscenza.
+
+Vi ringrazio per l'attenzione e concludo la lezione.
+

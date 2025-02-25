@@ -1,0 +1,52 @@
+**Lezione: Problemi di Soddisfacimento di Vincoli (CSP)**
+
+Benvenuti alla lezione sui Problemi di Soddisfacimento di Vincoli (Constraint Satisfaction Problems, CSP). In questa sessione analizzeremo questa classe di problemi e le tecniche di risoluzione ad essa associate.
+
+### Obiettivi della Lezione
+1. Descrivere i problemi di soddisfacimento di vincoli e la loro struttura.
+2. Introdurre le tecniche di risoluzione basate sulla ricerca e sulle euristiche.
+3. Definire metodi per la scomposizione dei problemi e il loro impatto sulla complessità computazionale.
+4. Confrontare i CSP con altri approcci di problem solving.
+
+## Definizione di CSP
+Un problema di soddisfacimento di vincoli (CSP) è definito da:
+- Un insieme di **variabili** \(X_1, X_2, ..., X_n\).
+- Un insieme di **domini** \(D_1, D_2, ..., D_n\) che specificano i valori ammissibili per ciascuna variabile.
+- Un insieme di **vincoli** \(C_1, C_2, ..., C_m\) che definiscono le combinazioni accettabili di valori tra variabili.
+
+La soluzione di un CSP è un'assegnazione completa delle variabili che soddisfa tutti i vincoli imposti.
+
+## Differenza tra CSP e Problem Solving Generico
+Nei problemi di ricerca classici, lo stato viene trattato come una "scatola nera" senza una struttura interna chiara. Nei CSP, invece, la struttura dello stato è esplicitamente definita e sfruttata per ridurre la complessità della ricerca.
+
+## Esempi di CSP
+- **Colorazione delle mappe**: Assegnare colori a regioni geografiche evitando che due regioni adiacenti abbiano lo stesso colore.
+- **Problema delle 8 regine**: Posizionare 8 regine su una scacchiera senza che si minaccino a vicenda.
+- **Sudoku**: Riempire una griglia 9×9 rispettando i vincoli di riga, colonna e regione.
+
+## Rappresentazione Grafica dei CSP
+I CSP possono essere rappresentati tramite **grafi di vincoli**, dove:
+- I nodi rappresentano le variabili.
+- Gli archi rappresentano i vincoli tra variabili.
+
+## Tecniche di Risoluzione dei CSP
+### 1. Algoritmi Generativi
+- **Generate and Test**: Genera tutte le possibili assegnazioni e verifica se soddisfano i vincoli.
+- **Backtracking**: Esplora l'albero delle assegnazioni e torna indietro in caso di fallimento.
+
+### 2. Algoritmi di Propagazione
+- **Forward Checking**: Dopo ogni assegnazione, riduce il dominio delle variabili rimanenti.
+- **Constraint Propagation**: Utilizza tecniche di consistenza per eliminare valori non validi.
+
+### 3. Tecniche di Consistenza
+- **Arc Consistency (AC-3)**: Elimina valori dai domini che non soddisfano i vincoli binari.
+- **Path Consistency**: Estende la verifica ai vincoli tra terne di variabili.
+
+## Complessità dei CSP
+I CSP con domini finiti hanno una complessità esponenziale nel caso peggiore. Tuttavia, sfruttando la struttura del problema, è possibile ridurre lo spazio di ricerca.
+
+## Conclusioni
+Abbiamo esplorato la struttura e le strategie di risoluzione dei CSP, evidenziando il loro ruolo nei problemi di intelligenza artificiale. L'uso di tecniche avanzate come la propagazione dei vincoli e la consistenza permette di ottimizzare la ricerca e risolvere problemi complessi in modo più efficiente.
+
+Grazie per l’attenzione!
+

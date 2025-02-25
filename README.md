@@ -2,6 +2,8 @@
 
 This project aims to quantify the impact of emotions in Human-Computer Interaction (HCI) between humans and Large Language Models (LLMs). The central hypothesis is that apathetic prompts lead to better performance across various tasks compared to empathetic prompts.
 
+
+
 ## Status
 
 | Task | Status | Notes |

@@ -1,0 +1,50 @@
+**Lezione: Risolvere i Problemi con la Ricerca**
+
+Benvenuti alla lezione su "Risolvere i problemi con la ricerca". In questa sessione ci concentreremo sulla comprensione delle strategie di ricerca e su come queste possano essere applicate per risolvere problemi complessi. In particolare, esamineremo diversi tipi di strategie di ricerca, distinguendo tra quelle non informate e quelle informate. Infine, analizzeremo come le euristiche possano rendere più efficaci tali strategie in contesti reali.
+
+### Obiettivi della Lezione
+1. Definire la ricerca come la capacità di un agente di costruire sequenze di azioni per raggiungere un obiettivo.
+2. Descrivere le principali tipologie di ricerca:
+   - Ricerca non informata
+   - Ricerca informata
+3. Analizzare la complessità spaziale e temporale della ricerca e il ruolo delle funzioni euristiche.
+4. Fornire spunti per l'applicazione della ricerca in contesti realistici.
+
+## Strategie di Ricerca
+
+### Ricerca Non Informata
+Le strategie di ricerca non informate operano senza informazioni aggiuntive sull'obiettivo. Gli stati vengono generati e verificati sistematicamente fino a trovare la soluzione. Alcuni esempi:
+- **Ricerca in ampiezza**: espande prima il nodo più vicino alla radice, quindi i suoi successori, e così via.
+- **Ricerca a costo uniforme**: simile alla ricerca in ampiezza, ma tiene conto di un costo associato agli archi.
+- **Ricerca in profondità**: espande prima il nodo più profondo non ancora visitato.
+- **Ricerca in profondità limitata**: impone un limite alla profondità della ricerca per ridurre il costo computazionale.
+- **Ricerca ad approfondimento iterativo**: combina ricerca in profondità con profondità limitata, aumentando progressivamente il limite.
+- **Ricerca bidirezionale**: effettua due ricerche in parallelo, una dall'inizio e una dall'obiettivo, fino all'incontro delle due frontiere.
+
+### Ricerca Informata
+Le strategie informate utilizzano informazioni aggiuntive per guidare la ricerca verso la soluzione, riducendo lo spazio di stati da esplorare.
+- **Ricerca Best-First**: seleziona il nodo da espandere in base a una funzione di valutazione.
+  - **Ricerca greedy (golosa)**: sceglie il nodo che sembra più vicino all'obiettivo secondo una funzione euristica.
+  - **Ricerca A***: combina il costo del cammino percorso con una stima del costo residuo, minimizzando il costo totale previsto.
+
+L'algoritmo A* è ottimale se la funzione euristica utilizzata è ammissibile (non sovrastima mai il costo effettivo) e consistente (monotona rispetto al grafo).
+
+## Considerazioni su Complessità e Memoria
+Le ricerche non informate tendono ad avere una complessità elevata sia in termini di tempo che di memoria, con una crescita esponenziale rispetto alla profondità del problema. Le strategie informate possono ridurre significativamente la complessità se la funzione euristica è ben scelta.
+
+## Applicazioni in Contesti Realistici
+Per affrontare problemi reali, si utilizzano strategie che ottimizzano l'uso della memoria e migliorano l'efficienza computazionale. Alcuni approcci:
+- **Algoritmi di ricerca locale**: non tengono traccia dell’intero spazio degli stati, ma cercano soluzioni ottimali in contesti locali.
+  - **Hill Climbing (Salita della collina)**: ricerca il massimo locale, ma può bloccarsi in massimi locali.
+  - **Simulated Annealing**: introduce una componente casuale per evitare di fermarsi in massimi locali.
+  - **Local Beam Search**: mantiene in memoria un numero limitato di stati candidati, selezionando i migliori per ogni iterazione.
+
+- **Algoritmi genetici**: ispirati all’evoluzione biologica, utilizzano selezione, mutazione e crossover per trovare soluzioni ottimali.
+
+- **Ricerca online e apprendimento**: gli agenti possono apprendere durante l’esplorazione e aggiornare le proprie strategie dinamicamente (es. RLRT*).
+
+## Conclusioni
+Abbiamo esplorato le principali strategie di ricerca e le loro applicazioni in contesti teorici e pratici. Le strategie informate offrono un vantaggio significativo in termini di efficienza, ma dipendono dalla qualità delle funzioni euristiche utilizzate. Infine, l’uso di algoritmi avanzati come la ricerca locale e gli algoritmi genetici permette di affrontare problemi complessi con vincoli computazionali.
+
+Grazie per l’attenzione.
+

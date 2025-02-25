@@ -1,0 +1,78 @@
+**Lezione: Problem Solving e Strategie di Ricerca**
+
+Benvenuti alla lezione sul "Problem Solving". In particolare, affronteremo il tema della risoluzione dei problemi tramite la ricerca. Vedremo come un agente può trovare una sequenza di azioni per raggiungere i propri obiettivi e analizzeremo diverse strategie di ricerca.
+
+### Obiettivi della Lezione
+1. Definire gli elementi che costituiscono un problema e la sua soluzione.
+2. Introdurre i metodi utilizzabili da un agente per scegliere le proprie azioni in ambienti deterministici, osservabili, statici e completamente noti.
+3. Definire la ricerca come la capacità dell'agente di costruire sequenze di azioni che raggiungono uno specifico obiettivo.
+
+## Definizione del Problem Solving
+
+Risolvere problemi è un processo che può essere paragonato all'attività intellettuale umana. È un processo complesso che coinvolge diversi aspetti cognitivi, tra cui:
+- **Induzione** (formalizzata mediante l'apprendimento);
+- **Sostituzione** (associata al riconoscimento);
+- **Ragionamento** (formalizzato con la deduzione);
+- **Problem Solving** (che racchiude tutti i precedenti).
+
+Un agente intelligente deve affrontare problemi complessi utilizzando metodi computazionali che gli permettano di esplorare lo spazio delle possibili soluzioni.
+
+## Approcci alla Risoluzione dei Problemi
+
+Per affrontare un problema, possiamo adottare due strategie principali:
+1. **Risoluzione tramite ricerca**: l'agente esplora lo spazio degli stati per trovare una soluzione ottimale.
+2. **Risoluzione tramite apprendimento**: si utilizzano tecniche di machine learning per migliorare le prestazioni dell'agente basandosi sull'esperienza.
+
+In questa lezione, ci concentreremo sulla **risoluzione tramite ricerca**.
+
+## Formulazione del Problema
+
+Per definire formalmente un problema, dobbiamo identificare i seguenti elementi:
+- **Stato iniziale**: il punto di partenza.
+- **Azioni possibili**: tutte le mosse che l'agente può compiere.
+- **Modello di transizione**: la relazione tra stati e azioni.
+- **Test obiettivo**: il criterio che determina se la soluzione è stata trovata.
+- **Costo del cammino**: una funzione che assegna un costo a ogni sequenza di azioni.
+
+Una volta formalizzato il problema, possiamo applicare algoritmi di ricerca per trovare una soluzione.
+
+## Strategie di Ricerca
+
+Le strategie di ricerca si dividono in **non informate** e **informate**.
+
+### Ricerca Non Informata
+Le strategie di ricerca non informate non utilizzano informazioni aggiuntive oltre alla struttura del problema. Alcuni esempi includono:
+- **Ricerca in ampiezza**: esplora tutti i nodi di un livello prima di passare a quello successivo.
+- **Ricerca a costo uniforme**: espande il nodo con il costo minore.
+- **Ricerca in profondità**: esplora un ramo alla volta fino a raggiungere la massima profondità.
+- **Ricerca in profondità limitata**: impone un limite alla profondità della ricerca.
+- **Ricerca ad approfondimento iterativo**: combina la ricerca in profondità con un limite crescente.
+- **Ricerca bidirezionale**: effettua due ricerche, una dall'inizio e una dall'obiettivo, fino all'incontro delle due frontiere.
+
+### Ricerca Informata
+Le strategie informate utilizzano **euristiche** per guidare la ricerca. Alcuni esempi sono:
+- **Ricerca Best-First**: seleziona il nodo da espandere in base a una funzione di valutazione.
+- **Ricerca Greedy (Golosa)**: sceglie il nodo più vicino all'obiettivo secondo una funzione euristica.
+- **Ricerca A***: combina il costo del cammino percorso con una stima del costo residuo, minimizzando il costo totale previsto.
+
+L'algoritmo A* è ottimale se la funzione euristica utilizzata è **ammissibile** (non sovrastima mai il costo effettivo) e **consistente** (monotona rispetto al grafo).
+
+## Considerazioni su Complessità e Memoria
+Le ricerche non informate tendono ad avere una complessità elevata sia in termini di tempo che di memoria, con una crescita esponenziale rispetto alla profondità del problema. Le strategie informate possono ridurre significativamente la complessità se la funzione euristica è ben scelta.
+
+## Applicazioni in Contesti Realistici
+Per affrontare problemi reali, si utilizzano strategie che ottimizzano l’uso della memoria e migliorano l’efficienza computazionale. Alcuni approcci includono:
+- **Algoritmi di ricerca locale**: evitano di memorizzare tutti gli stati esplorati e cercano soluzioni ottimali in contesti locali.
+  - **Hill Climbing (Salita della collina)**: ricerca il massimo locale, ma può bloccarsi in massimi locali.
+  - **Simulated Annealing**: introduce una componente casuale per evitare di fermarsi in massimi locali.
+  - **Local Beam Search**: mantiene in memoria un numero limitato di stati candidati, selezionando i migliori per ogni iterazione.
+
+- **Algoritmi genetici**: ispirati all’evoluzione biologica, utilizzano selezione, mutazione e crossover per trovare soluzioni ottimali.
+
+- **Ricerca online e apprendimento**: gli agenti possono apprendere durante l’esplorazione e aggiornare le proprie strategie dinamicamente (es. RLRT*).
+
+## Conclusioni
+Abbiamo esplorato le principali strategie di ricerca e le loro applicazioni in contesti teorici e pratici. Le strategie informate offrono un vantaggio significativo in termini di efficienza, ma dipendono dalla qualità delle funzioni euristiche utilizzate. Infine, l’uso di algoritmi avanzati come la ricerca locale e gli algoritmi genetici permette di affrontare problemi complessi con vincoli computazionali.
+
+Grazie per l’attenzione.
+
