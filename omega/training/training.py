@@ -9,6 +9,7 @@ from peft import get_peft_model, LoraConfig, TaskType, PeftModel
 import torch
 import structlog
 import os
+import glob
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
@@ -31,21 +32,29 @@ VELVET: AutoModelForCausalLM = AutoModelForCausalLM.from_pretrained(
 logger.info(f"{model_name} loaded")
 
 
+# Trova l'ultimo checkpoint disponibile
+def get_latest_checkpoint(output_dir: str):
+    checkpoints = sorted(glob.glob(f"{output_dir}/checkpoint-*"), key=os.path.getctime)
+    return checkpoints[-1] if checkpoints else None
+
+
 def train(emotion: str) -> None:
 
+    output_dir: str = f"./Velvet-14B-{emotion}"
+
     training_args: TrainingArguments = TrainingArguments(
-        output_dir="./velvet_lora",
+        output_dir=output_dir,
         evaluation_strategy="steps",  # Valutazione più frequente per fermare il training prima
-        eval_steps=500,  # Frequenza della valutazione
+        eval_steps=50,  # Valuta meno spesso per ridurre overhead
+        save_steps=5,  # Salva meno frequentemente per non intasare il disco
         save_strategy="steps",  # Salvataggio più frequente
-        save_steps=1000,  # Salva ogni 1000 step
         save_total_limit=2,  # Mantieni solo gli ultimi 2 checkpoint per risparmiare spazio
-        per_device_train_batch_size=1,  # Riduci il batch per evitare memory overload su Mac
         per_device_eval_batch_size=1,
-        gradient_accumulation_steps=8,  # Simula batch più grandi senza pesare sulla RAM
-        num_train_epochs=10,  # Riduci il numero di epoche per velocizzare il training
+        per_device_train_batch_size=1,
+        gradient_accumulation_steps=4,  # Accumuli meno gradienti per update
+        num_train_epochs=2,  # Riduci il numero di epoche per velocizzare il training
         logging_dir="./logs",
-        logging_steps=200,  # Frequenza dei log
+        logging_steps=5,  # Frequenza dei log
         fp16=False,  # NO FP16 su MPS! Usa invece bf16 (se disponibile)
         bf16=True,  # Usa bfloat16 se disponibile
         optim="adamw_torch",  # Ottimizzatore più efficiente su MPS
@@ -69,10 +78,17 @@ def train(emotion: str) -> None:
         eval_dataset=tokenized_dataset["test"],
         tokenizer=TOKENIZER,
     )
-    trainer.train()
+    checkpoint_path = None
+    if os.path.exists(output_dir) and os.listdir(output_dir):
+        checkpoint_path: str = get_latest_checkpoint(
+            output_dir=output_dir
+        )  # Hugging Face Trainer cerca automaticamente il checkpoint più recente
+        print(f"Riprendo il training dal checkpoint in {checkpoint_path}")
 
-    model.save_pretrained(f"./Velvet-14B-{emotion}")
-    TOKENIZER.save_pretrained(f"./Velvet-14B-{emotion}")
+    trainer.train(resume_from_checkpoint=checkpoint_path)
+
+    model.save_pretrained(f"./Velvet-14B-{emotion}-full")
+    TOKENIZER.save_pretrained(f"./Velvet-14B-{emotion}-full")
 
 
 def get_dataset(data_file_path: str) -> Dataset:
@@ -95,10 +111,10 @@ def get_peft_model_for_training() -> PeftModel:
     return model
 
 
-def format_velvet_conversation(example: Dict[str, str]):
+def format_velvet_conversation(example: Dict[str, str]) -> Dict[str, str]:
     return {
-        "input_text": f"<s>Utente: {example['Utente']}</s>\n<s>Assistente: ",
-        "target_text": f"{example['Assistente']}</s>",
+        "input_text": f"<s><role>user</role><turn>{example['Utente']}</turn><role>assistant</role><turn>",
+        "target_text": f"{example['Assistente']}</turn></s>",
     }
 
 
