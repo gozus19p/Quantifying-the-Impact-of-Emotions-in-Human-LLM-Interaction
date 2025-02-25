@@ -29,9 +29,7 @@ def test(model_name: str) -> str:
         # quantization_config=quantization_config,
     )
     logger.info(f"{model_name} loaded")
-    input_text = (
-        "Utente: Come si differenziano IA forte e IA debole?</s>\n<s>Assistente: "
-    )
+    input_text = "<s>\n<turn><role>user</role>\nCiao. Raccontami qualcosa.\n</turn>\n<turn><role>assistant</role>"
     embeddings = TOKENIZER(input_text, return_tensors="pt").to("mps")
     output = VELVET.generate(
         embeddings["input_ids"],
@@ -48,4 +46,4 @@ model_name: str = "Almawave/Velvet-14B"
 if __name__ == "__main__":
 
     print(test("Almawave/Velvet-14B"))
-    print(test(os.path.dirname(__file__) + "/../lora_fine_tuned_model"))
+    print(test(os.path.dirname(__file__) + "/../../Velvet-14B-joy/checkpoint-35"))
