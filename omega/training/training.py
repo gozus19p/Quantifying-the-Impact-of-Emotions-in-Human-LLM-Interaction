@@ -62,13 +62,13 @@ def train(emotion: str) -> None:
     training_args: TrainingArguments = TrainingArguments(
         output_dir=output_dir,
         evaluation_strategy="steps",  # Valutazione più frequente per fermare il training prima
-        eval_steps=50,  # Valuta meno spesso per ridurre overhead
+        eval_steps=5,  # Valuta meno spesso per ridurre overhead
         save_steps=5,  # Salva meno frequentemente per non intasare il disco
         save_strategy="steps",  # Salvataggio più frequente
         save_total_limit=2,  # Mantieni solo gli ultimi 2 checkpoint per risparmiare spazio
         per_device_eval_batch_size=1,
         per_device_train_batch_size=1,
-        gradient_accumulation_steps=8,  # Accumuli meno gradienti per update
+        gradient_accumulation_steps=4,  # Accumuli meno gradienti per update
         num_train_epochs=2,  # Riduci il numero di epoche per velocizzare il training
         logging_dir="./logs",
         logging_steps=1,  # Frequenza dei log
@@ -106,7 +106,7 @@ def train(emotion: str) -> None:
     trainer.train(resume_from_checkpoint=checkpoint_path)
 
     model.save_pretrained(f"./Velvet-14B-{emotion}-full")
-    TOKENIZER.save_pretrained(f"./Velvet-14B-{emotion}-full")
+    TOKENIZER.save_pretrained(f"./Velvet-14B-{emotion}-full-tokenizer")
 
 
 def get_dataset(data_file_path: str) -> Dataset:
