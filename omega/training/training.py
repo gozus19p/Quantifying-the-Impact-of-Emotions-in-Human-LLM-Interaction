@@ -3,10 +3,17 @@ import json
 import token
 from typing import Any, Dict, List
 from h11 import Data
-from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments, Trainer
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    TrainingArguments,
+    Trainer,
+    TrainerCallback,
+)
 from datasets import load_dataset, Dataset
 from peft import get_peft_model, LoraConfig, TaskType, PeftModel
 import torch
+from torch.utils.data import DataLoader
 import structlog
 import os
 import glob
@@ -14,6 +21,16 @@ import glob
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
 logger = structlog.getLogger()
+
+
+class FileLoggerCallback(TrainerCallback):
+    def __init__(self, emotion: str):
+        self.log_file = f"training-{emotion}.log"
+
+    def on_log(self, args, state, control, logs=None, **kwargs):
+        if logs:
+            with open(self.log_file, "a") as f:
+                f.write(str(logs) + "\n")
 
 
 model_name: str = "Almawave/Velvet-14B"
@@ -51,10 +68,10 @@ def train(emotion: str) -> None:
         save_total_limit=2,  # Mantieni solo gli ultimi 2 checkpoint per risparmiare spazio
         per_device_eval_batch_size=1,
         per_device_train_batch_size=1,
-        gradient_accumulation_steps=4,  # Accumuli meno gradienti per update
+        gradient_accumulation_steps=8,  # Accumuli meno gradienti per update
         num_train_epochs=2,  # Riduci il numero di epoche per velocizzare il training
         logging_dir="./logs",
-        logging_steps=5,  # Frequenza dei log
+        logging_steps=1,  # Frequenza dei log
         fp16=False,  # NO FP16 su MPS! Usa invece bf16 (se disponibile)
         bf16=True,  # Usa bfloat16 se disponibile
         optim="adamw_torch",  # Ottimizzatore più efficiente su MPS
@@ -77,6 +94,7 @@ def train(emotion: str) -> None:
         train_dataset=tokenized_dataset["train"],
         eval_dataset=tokenized_dataset["test"],
         tokenizer=TOKENIZER,
+        callbacks=[FileLoggerCallback(emotion=emotion)],
     )
     checkpoint_path = None
     if os.path.exists(output_dir) and os.listdir(output_dir):
@@ -93,9 +111,8 @@ def train(emotion: str) -> None:
 
 def get_dataset(data_file_path: str) -> Dataset:
     dataset: Dataset = load_dataset("json", data_files=data_file_path)
-    formatted_dataset: Dataset = dataset.map(format_velvet_conversation)
 
-    tokenized_dataset: Dataset = formatted_dataset.map(tokenize, batched=True)
+    tokenized_dataset: Dataset = dataset.map(tokenize, batch_size=50, batched=True)
     return tokenized_dataset
 
 
@@ -111,22 +128,25 @@ def get_peft_model_for_training() -> PeftModel:
     return model
 
 
-def format_velvet_conversation(example: Dict[str, str]) -> Dict[str, str]:
-    return {
-        "input_text": f"<s><role>user</role><turn>{example['Utente']}</turn><role>assistant</role><turn>",
-        "target_text": f"{example['Assistente']}</turn></s>",
-    }
+def format_conversation(messages: List[Dict[str, str]]) -> str:
+    formatted_text = ""  # Inizio della sequenza
+
+    for message in messages:
+        role = message["role"]  # "user" o "assistant"
+        content = message["content"]
+
+        formatted_text += f"<turn>\n<role>{role}</role>\n{content}\n</turn>\n"
+
+    return formatted_text
 
 
-def tokenize(example: Dict[str, str]) -> Dict[str, Any]:
-    inputs = TOKENIZER(
-        example["input_text"], padding="max_length", truncation=True, max_length=512
+def tokenize(batch: Dict[str, List[str]]) -> Dict[str, Any]:
+    formatted_texts = [format_conversation(messages) for messages in batch["messages"]]
+    tokenized = TOKENIZER(
+        formatted_texts, padding="max_length", truncation=True, max_length=1024
     )
-    targets = TOKENIZER(
-        example["target_text"], padding="max_length", truncation=True, max_length=512
-    )
-    inputs["labels"] = targets["input_ids"]
-    return inputs
+    tokenized["labels"] = tokenized["input_ids"].copy()
+    return tokenized
 
 
 if __name__ == "__main__":

@@ -29,8 +29,8 @@ def test(model_name: str) -> str:
         # quantization_config=quantization_config,
     )
     logger.info(f"{model_name} loaded")
-    input_text = "<s>\n<turn><role>user</role>\nCiao. Raccontami qualcosa.\n</turn>\n<turn><role>assistant</role>"
-    embeddings = TOKENIZER(input_text, return_tensors="pt").to("mps")
+    input_text = "<turn><role>user</role>\nCiao. Raccontami qualcosa.\n</turn>\n<turn><role>assistant</role>"
+    embeddings = TOKENIZER(input_text, return_tensors="pt", padding="longest").to("mps")
     output = VELVET.generate(
         embeddings["input_ids"],
         max_new_tokens=500,
@@ -45,5 +45,5 @@ model_name: str = "Almawave/Velvet-14B"
 
 if __name__ == "__main__":
 
-    print(test("Almawave/Velvet-14B"))
-    print(test(os.path.dirname(__file__) + "/../../Velvet-14B-joy/checkpoint-35"))
+    # print(test("Almawave/Velvet-14B"))
+    print(test(os.path.dirname(__file__) + "/../../Velvet-14B-joy/checkpoint-180"))
