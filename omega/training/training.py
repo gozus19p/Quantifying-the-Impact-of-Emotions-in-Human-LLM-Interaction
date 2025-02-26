@@ -150,4 +150,4 @@ def tokenize(batch: Dict[str, List[str]]) -> Dict[str, Any]:
 
 
 if __name__ == "__main__":
-    train(emotion="joy")
+    train(emotion="fear")

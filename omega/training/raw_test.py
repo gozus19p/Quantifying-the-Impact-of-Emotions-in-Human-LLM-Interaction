@@ -29,14 +29,14 @@ def test(model_name: str) -> str:
         # quantization_config=quantization_config,
     )
     logger.info(f"{model_name} loaded")
-    input_text = "<turn><role>user</role>\nCiao. Raccontami qualcosa.\n</turn>\n<turn><role>assistant</role>"
+    input_text = "<turn><role>user</role>\nCiao. Come ti senti oggi?\n</turn>\n<turn><role>assistant</role>"
     embeddings = TOKENIZER(input_text, return_tensors="pt", padding="longest").to("mps")
     output = VELVET.generate(
         embeddings["input_ids"],
-        max_new_tokens=500,
+        max_new_tokens=100,
         attention_mask=embeddings["attention_mask"],
     )
-    return TOKENIZER.decode(output[0])
+    return TOKENIZER.decode(output[0], skip_special_tokens=True)
 
 
 # model_name: str = os.path.dirname(__file__) + "/../lora_fine_tuned_model"
@@ -45,5 +45,5 @@ model_name: str = "Almawave/Velvet-14B"
 
 if __name__ == "__main__":
 
-    # print(test("Almawave/Velvet-14B"))
-    print(test(os.path.dirname(__file__) + "/../../Velvet-14B-joy/checkpoint-180"))
+    print(test("Almawave/Velvet-14B"))
+    print(test(os.path.dirname(__file__) + "/../../Velvet-14B-joy/checkpoint-35"))
