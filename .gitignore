@@ -3,3 +3,4 @@ __pycache__
 datasets/
 data/
 .DS*
+omega/logic/vector-database/volumes
