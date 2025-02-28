@@ -14,7 +14,7 @@ def get_history() -> List[Dict[str, str]]:
 
     return [
         {
-            "role": "Utente" if message["role"] == "user" else "Assistente",
+            "role": "user" if message["role"] == "user" else "assistant",
             "message": message["content"],
         }
         for message in st.session_state.messages

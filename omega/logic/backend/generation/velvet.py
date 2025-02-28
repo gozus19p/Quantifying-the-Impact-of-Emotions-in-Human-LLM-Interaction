@@ -1,9 +1,10 @@
-from typing import List
+from typing import Dict, List
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 import structlog
 from pydantic import BaseModel
 from transformers import QuantoConfig
+from retrieval.vector_db import search
 import os
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
@@ -45,26 +46,39 @@ class ChatResponse(BaseModel):
     message: str
 
 
-def format_multiturn_conversation(iteration: ChatIteration) -> str:
-    user_input: str = f"<s>Utente: {iteration.message}</s>\n"
+def format_utterance(message: str, context: str, role: str) -> str:
+    return f"<turn><role>{role}</role>\n{context}\n{message}\n</turn>\n"
 
-    history: str = ""
 
-    for history_entry in iteration.history:
-        history += f"<s>{history_entry.role}: {history_entry.message}</s>\n"
+def format_multiturn_conversation(iteration: ChatIteration, context: str) -> str:
+    user_input: str = format_utterance(
+        message=iteration.message, context=context, role="user"
+    )
 
-    # Aggiunge l'ultimo turno vuoto per la generazione
-    prompt: str = f"{history}{user_input}\n<s>Assistente: "
+    history: str = "".join(
+        [
+            format_utterance(message=history_entry.message, role=history_entry.role)
+            for history_entry in iteration.history
+        ]
+    )
 
-    # Formato atteso: `Utente: Ciao, chi sei?</s><s>Assistente: `
-    # Nel caso di più iterazioni si ripete: `Utente: Ciao, chi sei?</s><s>Assistente: Mario</s><s>Utente: ciao, Mario!</s><s>Assistente: `
-    return prompt.removeprefix("<s>")
+    prompt: str = f"{history}{user_input}\n<turn><role>assistant</role>\n"
+    return prompt
 
 
 def generate(iteration: ChatIteration) -> str:
 
+    logger.info("Doing RAG...")
+    results: List[Dict[str, str]] = search(question=iteration.message)
+    if len(results) > 0:
+        logger.info("RAG founds results!")
+        context: str = "\n\n".join([r["chunk_raw"] for r in results])
+    else:
+        logger.info("RAG found no results")
+        context: str = ""
+
     logger.info("Embedding request")
-    prompt: str = format_multiturn_conversation(iteration)
+    prompt: str = format_multiturn_conversation(iteration=iteration, context=context)
     logger.info("Prompt", prompt=prompt)
 
     embeddings: torch.Tensor = TOKENIZER(prompt, return_tensors="pt").to("mps")

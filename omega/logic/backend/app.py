@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from velvet import generate, ChatIteration, ChatResponse
+from generation.velvet import generate, ChatIteration, ChatResponse
 
 
 app = FastAPI()
