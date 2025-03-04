@@ -40,7 +40,7 @@ def main() -> None:
             response_text = ""
 
             with requests.post(
-                url=f"{BASE_URL}/api/v1/chat/streaming",
+                url=f"{BASE_URL}/api/v1/chat",
                 json={"message": prompt, "history": history},
                 stream=True,
             ) as response:

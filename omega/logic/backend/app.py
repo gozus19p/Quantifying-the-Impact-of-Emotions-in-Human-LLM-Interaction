@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from generation.velvet import generate, generate_streaming, ChatIteration, ChatResponse
+from generation.velvet import generate_streaming, ChatIteration, ChatResponse
 from fastapi.responses import StreamingResponse
 
 
@@ -8,12 +8,6 @@ app = FastAPI()
 
 
 @app.post("/api/v1/chat")
-def chat(iteration: ChatIteration) -> ChatResponse:
-    answer: str = generate(iteration)
-    return ChatResponse(message=answer)
-
-
-@app.post("/api/v1/chat/streaming")
 def streaming_chat(iteration: ChatIteration) -> str:
     return StreamingResponse(generate_streaming(iteration), media_type="text/plain")
 
