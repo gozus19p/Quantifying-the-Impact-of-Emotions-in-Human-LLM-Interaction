@@ -1,11 +1,12 @@
 from typing import Dict, List
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM, TextIteratorStreamer
 import torch
 import structlog
 from pydantic import BaseModel
 from transformers import QuantoConfig
 from retrieval.vector_db import search
 import os
+from threading import Thread
 
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
 
@@ -46,14 +47,20 @@ class ChatResponse(BaseModel):
     message: str
 
 
-def format_utterance(message: str, context: str, role: str) -> str:
-    return f"<turn><role>{role}</role>\n{context}\n{message}\n</turn>\n"
+def format_utterance(message: str, role: str) -> str:
+    return f"<turn><role>{role}</role>\n{message}\n</turn>\n"
 
 
 def format_multiturn_conversation(iteration: ChatIteration, context: str) -> str:
-    user_input: str = format_utterance(
-        message=iteration.message, context=context, role="user"
-    )
+    if context:
+        prompt: str = (
+            f"Dato un contesto, rispondi alla domanda. Contesto:\n\n{context}\nDomanda: {iteration.message}"
+        )
+    else:
+        context: str = ""
+        prompt: str = iteration.message
+
+    user_input: str = format_utterance(message=prompt, role="user")
 
     history: str = "".join(
         [
@@ -66,37 +73,39 @@ def format_multiturn_conversation(iteration: ChatIteration, context: str) -> str
     return prompt
 
 
-def generate(iteration: ChatIteration) -> str:
-
+def generate_streaming(iteration: ChatIteration):
     logger.info("Doing RAG...")
     results: List[Dict[str, str]] = search(question=iteration.message)
     if len(results) > 0:
-        logger.info("RAG founds results!")
-        context: str = "\n\n".join([r["chunk_raw"] for r in results])
+        logger.info("RAG found results!")
+        context = "\n\n".join([r["chunk_raw"] for r in results]) if results else ""
     else:
-        logger.info("RAG found no results")
-        context: str = ""
+        logger.info("RAG found nothing")
+        context = None
 
     logger.info("Embedding request")
-    prompt: str = format_multiturn_conversation(iteration=iteration, context=context)
-    logger.info("Prompt", prompt=prompt)
+    prompt = format_multiturn_conversation(iteration=iteration, context=context)
+    embeddings = TOKENIZER(prompt, return_tensors="pt").to("mps")
 
-    embeddings: torch.Tensor = TOKENIZER(prompt, return_tensors="pt").to("mps")
-    with torch.no_grad():
-        logger.info("Generating answer")
-        output: torch.Tensor = VELVET.generate(
-            input_ids=embeddings["input_ids"],
-            max_new_tokens=500,
-            attention_mask=embeddings["attention_mask"],
-        )
-
-    logger.info("Decoding")
-    answer: str = TOKENIZER.decode(output[0])
-    logger.info("Answer", answer=answer)
-
-    logger.info("Generation completed")
-    postprocessed_answer: str = (
-        answer.replace(prompt, "").replace("<s>", "").replace("</s>", "").strip()
+    logger.info("Setting up streamer")
+    streamer = TextIteratorStreamer(
+        TOKENIZER, skip_special_tokens=True, skip_prompt=True
     )
-    logger.info("PP answer", postprocessed_answer=postprocessed_answer)
-    return postprocessed_answer
+
+    # Esegui la generazione in un thread separato per non bloccare il flusso principale
+    def generate_text():
+        with torch.no_grad():
+            VELVET.generate(
+                input_ids=embeddings["input_ids"],
+                max_new_tokens=500,
+                attention_mask=embeddings["attention_mask"],
+                streamer=streamer,
+            )
+
+    thread = Thread(target=generate_text)
+    thread.start()
+
+    # Restituisci lo streaming man mano che i token vengono generati
+    # Ignora i primi `prompt_tokens` token
+    for token in streamer:
+        yield token

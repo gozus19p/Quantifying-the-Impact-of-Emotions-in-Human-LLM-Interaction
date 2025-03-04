@@ -8,16 +8,40 @@
             "name": "Python: Inference",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/logic/main.py",
-            "args": ["inference"],
+            "program": "${workspaceFolder}/alpha/logic/main.py",
+            "args": [
+                "inference"
+            ],
             "console": "integratedTerminal"
         },
         {
             "name": "Python: Evaluation",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/logic/main.py",
-            "args": ["evaluation"],
+            "program": "${workspaceFolder}/alpha/logic/main.py",
+            "args": [
+                "evaluation"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: Frontend",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "streamlit",
+            "args": [
+                "run",
+                "${workspaceFolder}/omega/logic/ui/app.py",
+            ],
+            "cwd": "${workspaceFolder}/omega/logic/ui",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python: Backend",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/omega/logic/backend/app.py",
+            "cwd": "${workspaceFolder}/omega/logic/backend",
             "console": "integratedTerminal"
         }
     ]

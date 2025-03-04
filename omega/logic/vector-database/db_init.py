@@ -1,6 +1,12 @@
 from pymilvus import MilvusClient, DataType
+import os
+import backend.retrieval.vector_db as vdb
 
-client = MilvusClient(uri="http://localhost:19530", token="root:Milvus")
+__LOCAL_DB: str = os.path.join(
+    os.path.dirname(__file__), "..", "backend", "retrieval", "milvus.db"
+)
+
+client = MilvusClient(uri="http://localhost:19530")
 
 schema = MilvusClient.create_schema(
     auto_id=False,
@@ -16,8 +22,6 @@ schema.add_field(field_name="lecture", datatype=DataType.VARCHAR, max_length=100
 schema.add_field(field_name="lecture_no", datatype=DataType.INT8)
 
 index_params = client.prepare_index_params()
-
-index_params.add_index(field_name="id", index_type="AUTOINDEX")
 
 index_params.add_index(field_name="chunk", index_type="AUTOINDEX", metric_type="COSINE")
 

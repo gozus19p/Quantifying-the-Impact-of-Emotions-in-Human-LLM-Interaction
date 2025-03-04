@@ -1,13 +1,14 @@
-import json
+import os
 from typing import Any, Dict, List
 
 from pymilvus import AnnSearchRequest, MilvusClient, RRFRanker
 import structlog
 
-from embedding import embed
+from retrieval.embedding import embed
 
 
-__CLIENT: MilvusClient = MilvusClient(uri="http://localhost:19530", token="root:Milvus")
+# __LOCAL_DB: str = os.path.join(os.path.dirname(__file__), "milvus.db")
+__CLIENT: MilvusClient = MilvusClient(uri="http://localhost:19530")
 __LOGGER: structlog.BoundLogger = structlog.get_logger()
 
 
@@ -71,21 +72,21 @@ def __parse_result(result: Dict[str, Any]) -> Dict[str, str]:
     }
 
 
-def search(question: str, threshold: float = 0.016) -> List[Dict]:
-    query: str = f"query: {question}"
+def search(question: str, threshold: float = 0.016, k: int = 60) -> List[Dict]:
+    query: str = f"{question}"
     query_vector: List[float] = embed([query])[0]
     search_result: List[List[Dict[str, Any]]] = __CLIENT.hybrid_search(
         collection_name="lectures",
         reqs=[
             AnnSearchRequest(
-                anns_field="",
+                anns_field="chunk",
                 data=[query_vector],
                 param={"metric_type": "COSINE"},
                 limit=3,
             )
         ],
         limit=3,
-        ranker=RRFRanker(k=60),
+        ranker=RRFRanker(k=k),
         output_fields=["lecture_no", "chunk_raw"],
     )
 
@@ -96,14 +97,16 @@ def search(question: str, threshold: float = 0.016) -> List[Dict]:
     return filtered_results
 
 
-print(
-    json.dumps(search("Come posso classificare le intelligenze artificiali?"), indent=2)
-)
+# import json
+
+# print(
+#     json.dumps(search("Come posso classificare le intelligenze artificiali?"), indent=2)
+# )
 
 
 # with open(
 #     "omega/logic/backend/retrieval/resources/post-processed/trascrizione lezione 1.txt",
 #     "r",
 # ) as f:
-#     # insert_lecture(lecture_text=f.read(), lecture_no=1)
+#     insert_lecture(lecture_text=f.read(), lecture_no=1)
 #     pass

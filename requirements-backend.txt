@@ -2,3 +2,7 @@ pydantic
 fastapi
 structlog
 pymilvus==2.5.4
+transformers
+uvicorn
+torch
+accelerate
