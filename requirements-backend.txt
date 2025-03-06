@@ -6,3 +6,4 @@ transformers
 uvicorn
 torch
 accelerate
+peft
