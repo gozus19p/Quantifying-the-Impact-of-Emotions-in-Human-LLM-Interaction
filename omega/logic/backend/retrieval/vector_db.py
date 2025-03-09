@@ -72,28 +72,44 @@ def __parse_result(result: Dict[str, Any]) -> Dict[str, str]:
     }
 
 
+def __z_score(score: float) -> float:
+    mean_score: float = 0.7703366847832998
+    std_score: float = 0.021180900917752647
+    return (score - mean_score) / std_score
+
+
+def __filter_results(results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    return [r for r in results if __z_score(score=r["distance"]) > 3]
+
+
 def search(question: str, threshold: float = 0.016, k: int = 60) -> List[Dict]:
     query: str = f"{question}"
     query_vector: List[float] = embed([query])[0]
-    search_result: List[List[Dict[str, Any]]] = __CLIENT.hybrid_search(
+    search_result: List[List[Dict[str, Any]]] = __CLIENT.search(
         collection_name="lectures",
-        reqs=[
-            AnnSearchRequest(
-                anns_field="chunk",
-                data=[query_vector],
-                param={"metric_type": "COSINE"},
-                limit=3,
-            )
-        ],
+        data=[query_vector],
+        search_params={"metric_type": "COSINE"},
         limit=3,
-        ranker=RRFRanker(k=k),
+        anns_field="chunk",
         output_fields=["lecture_no", "chunk_raw"],
     )
+    # search_result: List[List[Dict[str, Any]]] = __CLIENT.hybrid_search(
+    #     collection_name="lectures",
+    #     reqs=[
+    #         AnnSearchRequest(
+    #             anns_field="chunk",
+    #             data=[query_vector],
+    #             param={"metric_type": "COSINE"},
+    #             limit=3,
+    #         )
+    #     ],
+    #     limit=3,
+    #     ranker=RRFRanker(k=k),
+    #     output_fields=["lecture_no", "chunk_raw"],
+    # )
 
     results: List[Dict[str, Any]] = [__parse_result(result=r) for r in search_result[0]]
-    filtered_results: List[Dict[str, Any]] = [
-        r for r in results if r["distance"] >= threshold
-    ]
+    filtered_results: List[Dict[str, Any]] = __filter_results(results=results)
     return filtered_results
 
 

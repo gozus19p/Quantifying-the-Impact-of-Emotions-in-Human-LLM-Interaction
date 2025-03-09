@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from generation.velvet import generate_streaming, ChatIteration, ChatResponse
+from generation.velvet import generate_streaming, ChatIteration
 from fastapi.responses import StreamingResponse
 
 

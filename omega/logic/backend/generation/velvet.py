@@ -43,10 +43,6 @@ class ChatIteration(BaseModel):
     history: List[ChatHistoryEntry]
 
 
-class ChatResponse(BaseModel):
-    message: str
-
-
 def format_utterance(message: str, role: str) -> str:
     return f"<turn><role>{role}</role>\n{message}\n</turn>\n"
 

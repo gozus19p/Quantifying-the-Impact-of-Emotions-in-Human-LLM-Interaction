@@ -1,0 +1,602 @@
+[
+    {
+        "distance": 0.7670716047286987,
+        "prompt": "Qual \u00e8 la formula della legge di Ohm?\n"
+    },
+    {
+        "distance": 0.7524155378341675,
+        "prompt": "Qual \u00e8 la formula della legge di Ohm?\n"
+    },
+    {
+        "distance": 0.7477723956108093,
+        "prompt": "Qual \u00e8 la formula della legge di Ohm?\n"
+    },
+    {
+        "distance": 0.7922481894493103,
+        "prompt": "Spiegazione semplice della fotosintesi clorofilliana.\n"
+    },
+    {
+        "distance": 0.7705506682395935,
+        "prompt": "Spiegazione semplice della fotosintesi clorofilliana.\n"
+    },
+    {
+        "distance": 0.7519689798355103,
+        "prompt": "Spiegazione semplice della fotosintesi clorofilliana.\n"
+    },
+    {
+        "distance": 0.7980842590332031,
+        "prompt": "Quali sono le principali differenze tra acidi e basi?\n"
+    },
+    {
+        "distance": 0.7794702649116516,
+        "prompt": "Quali sono le principali differenze tra acidi e basi?\n"
+    },
+    {
+        "distance": 0.756033182144165,
+        "prompt": "Quali sono le principali differenze tra acidi e basi?\n"
+    },
+    {
+        "distance": 0.8103688955307007,
+        "prompt": "Come si calcola l'integrale di una funzione?\n"
+    },
+    {
+        "distance": 0.772117018699646,
+        "prompt": "Come si calcola l'integrale di una funzione?\n"
+    },
+    {
+        "distance": 0.7671903371810913,
+        "prompt": "Come si calcola l'integrale di una funzione?\n"
+    },
+    {
+        "distance": 0.8272231221199036,
+        "prompt": "Il principio di Archimede e le sue applicazioni.\n"
+    },
+    {
+        "distance": 0.7957160472869873,
+        "prompt": "Il principio di Archimede e le sue applicazioni.\n"
+    },
+    {
+        "distance": 0.7864205241203308,
+        "prompt": "Il principio di Archimede e le sue applicazioni.\n"
+    },
+    {
+        "distance": 0.762262225151062,
+        "prompt": "A cosa serve il numero di Avogadro?\n"
+    },
+    {
+        "distance": 0.7613295316696167,
+        "prompt": "A cosa serve il numero di Avogadro?\n"
+    },
+    {
+        "distance": 0.7492765188217163,
+        "prompt": "A cosa serve il numero di Avogadro?\n"
+    },
+    {
+        "distance": 0.8106370568275452,
+        "prompt": "Qual \u00e8 la differenza tra velocit\u00e0 e accelerazione?\n"
+    },
+    {
+        "distance": 0.7844303250312805,
+        "prompt": "Qual \u00e8 la differenza tra velocit\u00e0 e accelerazione?\n"
+    },
+    {
+        "distance": 0.7582228779792786,
+        "prompt": "Qual \u00e8 la differenza tra velocit\u00e0 e accelerazione?\n"
+    },
+    {
+        "distance": 0.8177773952484131,
+        "prompt": "Il secondo principio della termodinamica spiegato in modo semplice.\n"
+    },
+    {
+        "distance": 0.792644739151001,
+        "prompt": "Il secondo principio della termodinamica spiegato in modo semplice.\n"
+    },
+    {
+        "distance": 0.7743420004844666,
+        "prompt": "Il secondo principio della termodinamica spiegato in modo semplice.\n"
+    },
+    {
+        "distance": 0.7879899144172668,
+        "prompt": "Come funzionano le onde sonore?\n"
+    },
+    {
+        "distance": 0.7664763331413269,
+        "prompt": "Come funzionano le onde sonore?\n"
+    },
+    {
+        "distance": 0.7595394849777222,
+        "prompt": "Come funzionano le onde sonore?\n"
+    },
+    {
+        "distance": 0.7863084077835083,
+        "prompt": "Che cos'\u00e8 il bosone di Higgs?\n"
+    },
+    {
+        "distance": 0.7590968012809753,
+        "prompt": "Che cos'\u00e8 il bosone di Higgs?\n"
+    },
+    {
+        "distance": 0.7568038105964661,
+        "prompt": "Che cos'\u00e8 il bosone di Higgs?\n"
+    },
+    {
+        "distance": 0.7702034115791321,
+        "prompt": "Quali sono state le cause della Rivoluzione Francese?\n"
+    },
+    {
+        "distance": 0.7673051953315735,
+        "prompt": "Quali sono state le cause della Rivoluzione Francese?\n"
+    },
+    {
+        "distance": 0.7472535371780396,
+        "prompt": "Quali sono state le cause della Rivoluzione Francese?\n"
+    },
+    {
+        "distance": 0.8080099821090698,
+        "prompt": "La differenza tra Socrate, Platone e Aristotele.\n"
+    },
+    {
+        "distance": 0.7662211060523987,
+        "prompt": "La differenza tra Socrate, Platone e Aristotele.\n"
+    },
+    {
+        "distance": 0.7589818239212036,
+        "prompt": "La differenza tra Socrate, Platone e Aristotele.\n"
+    },
+    {
+        "distance": 0.7602798938751221,
+        "prompt": "Quali furono le conseguenze della caduta dell'Impero Romano?\n"
+    },
+    {
+        "distance": 0.738211989402771,
+        "prompt": "Quali furono le conseguenze della caduta dell'Impero Romano?\n"
+    },
+    {
+        "distance": 0.7294321656227112,
+        "prompt": "Quali furono le conseguenze della caduta dell'Impero Romano?\n"
+    },
+    {
+        "distance": 0.7542805075645447,
+        "prompt": "Chi ha scritto \"Il Leviatano\" e di cosa parla?\n"
+    },
+    {
+        "distance": 0.7533209323883057,
+        "prompt": "Chi ha scritto \"Il Leviatano\" e di cosa parla?\n"
+    },
+    {
+        "distance": 0.7221782207489014,
+        "prompt": "Chi ha scritto \"Il Leviatano\" e di cosa parla?\n"
+    },
+    {
+        "distance": 0.784802258014679,
+        "prompt": "Perch\u00e9 l'Impero Ottomano \u00e8 crollato?\n"
+    },
+    {
+        "distance": 0.7760359048843384,
+        "prompt": "Perch\u00e9 l'Impero Ottomano \u00e8 crollato?\n"
+    },
+    {
+        "distance": 0.7687296271324158,
+        "prompt": "Perch\u00e9 l'Impero Ottomano \u00e8 crollato?\n"
+    },
+    {
+        "distance": 0.8180436491966248,
+        "prompt": "Il Rinascimento italiano e le sue caratteristiche principali.\n"
+    },
+    {
+        "distance": 0.7792248725891113,
+        "prompt": "Il Rinascimento italiano e le sue caratteristiche principali.\n"
+    },
+    {
+        "distance": 0.7688080072402954,
+        "prompt": "Il Rinascimento italiano e le sue caratteristiche principali.\n"
+    },
+    {
+        "distance": 0.7555971145629883,
+        "prompt": "Quali sono stati i principali eventi della Guerra Fredda?\n"
+    },
+    {
+        "distance": 0.7390688061714172,
+        "prompt": "Quali sono stati i principali eventi della Guerra Fredda?\n"
+    },
+    {
+        "distance": 0.7382925748825073,
+        "prompt": "Quali sono stati i principali eventi della Guerra Fredda?\n"
+    },
+    {
+        "distance": 0.7860320210456848,
+        "prompt": "Chi erano gli stoici e cosa insegnavano?\n"
+    },
+    {
+        "distance": 0.755260705947876,
+        "prompt": "Chi erano gli stoici e cosa insegnavano?\n"
+    },
+    {
+        "distance": 0.7386413812637329,
+        "prompt": "Chi erano gli stoici e cosa insegnavano?\n"
+    },
+    {
+        "distance": 0.7637591361999512,
+        "prompt": "Come \u00e8 iniziata la Prima Guerra Mondiale?\n"
+    },
+    {
+        "distance": 0.7491785287857056,
+        "prompt": "Come \u00e8 iniziata la Prima Guerra Mondiale?\n"
+    },
+    {
+        "distance": 0.7458099722862244,
+        "prompt": "Come \u00e8 iniziata la Prima Guerra Mondiale?\n"
+    },
+    {
+        "distance": 0.7926754951477051,
+        "prompt": "La Dichiarazione di Indipendenza americana: contesto e conseguenze.\n"
+    },
+    {
+        "distance": 0.7831817865371704,
+        "prompt": "La Dichiarazione di Indipendenza americana: contesto e conseguenze.\n"
+    },
+    {
+        "distance": 0.7693849802017212,
+        "prompt": "La Dichiarazione di Indipendenza americana: contesto e conseguenze.\n"
+    },
+    {
+        "distance": 0.7897494435310364,
+        "prompt": "Come funziona un motore a combustione interna?\n"
+    },
+    {
+        "distance": 0.764855146408081,
+        "prompt": "Come funziona un motore a combustione interna?\n"
+    },
+    {
+        "distance": 0.759776771068573,
+        "prompt": "Come funziona un motore a combustione interna?\n"
+    },
+    {
+        "distance": 0.7901460528373718,
+        "prompt": "Quali sono le differenze tra un motore elettrico e uno termico?\n"
+    },
+    {
+        "distance": 0.7547242641448975,
+        "prompt": "Quali sono le differenze tra un motore elettrico e uno termico?\n"
+    },
+    {
+        "distance": 0.7474259734153748,
+        "prompt": "Quali sono le differenze tra un motore elettrico e uno termico?\n"
+    },
+    {
+        "distance": 0.7847492098808289,
+        "prompt": "Cos'\u00e8 il protocollo TCP/IP?\n"
+    },
+    {
+        "distance": 0.7675039172172546,
+        "prompt": "Cos'\u00e8 il protocollo TCP/IP?\n"
+    },
+    {
+        "distance": 0.7635290026664734,
+        "prompt": "Cos'\u00e8 il protocollo TCP/IP?\n"
+    },
+    {
+        "distance": 0.8222696781158447,
+        "prompt": "I principi base dell\u2019elettromagnetismo.\n"
+    },
+    {
+        "distance": 0.8163319826126099,
+        "prompt": "I principi base dell\u2019elettromagnetismo.\n"
+    },
+    {
+        "distance": 0.7809889912605286,
+        "prompt": "I principi base dell\u2019elettromagnetismo.\n"
+    },
+    {
+        "distance": 0.7834618091583252,
+        "prompt": "Come viene generata l'energia nucleare?\n"
+    },
+    {
+        "distance": 0.7602208256721497,
+        "prompt": "Come viene generata l'energia nucleare?\n"
+    },
+    {
+        "distance": 0.7483512163162231,
+        "prompt": "Come viene generata l'energia nucleare?\n"
+    },
+    {
+        "distance": 0.8189197182655334,
+        "prompt": "La differenza tra fibra ottica e cavi di rame.\n"
+    },
+    {
+        "distance": 0.7761016488075256,
+        "prompt": "La differenza tra fibra ottica e cavi di rame.\n"
+    },
+    {
+        "distance": 0.7569580078125,
+        "prompt": "La differenza tra fibra ottica e cavi di rame.\n"
+    },
+    {
+        "distance": 0.799524188041687,
+        "prompt": "Cosa sono le celle fotovoltaiche e come funzionano?\n"
+    },
+    {
+        "distance": 0.7610650062561035,
+        "prompt": "Cosa sono le celle fotovoltaiche e come funzionano?\n"
+    },
+    {
+        "distance": 0.7511805891990662,
+        "prompt": "Cosa sono le celle fotovoltaiche e come funzionano?\n"
+    },
+    {
+        "distance": 0.773908257484436,
+        "prompt": "Che cos\u2019\u00e8 il calcestruzzo armato e perch\u00e9 si usa?\n"
+    },
+    {
+        "distance": 0.7585480213165283,
+        "prompt": "Che cos\u2019\u00e8 il calcestruzzo armato e perch\u00e9 si usa?\n"
+    },
+    {
+        "distance": 0.7512930631637573,
+        "prompt": "Che cos\u2019\u00e8 il calcestruzzo armato e perch\u00e9 si usa?\n"
+    },
+    {
+        "distance": 0.8024388551712036,
+        "prompt": "Quali sono le tecnologie dietro il 5G?\n"
+    },
+    {
+        "distance": 0.7872149348258972,
+        "prompt": "Quali sono le tecnologie dietro il 5G?\n"
+    },
+    {
+        "distance": 0.7793415188789368,
+        "prompt": "Quali sono le tecnologie dietro il 5G?\n"
+    },
+    {
+        "distance": 0.7955009937286377,
+        "prompt": "Come funzionano i pannelli solari?\n"
+    },
+    {
+        "distance": 0.7627391815185547,
+        "prompt": "Come funzionano i pannelli solari?\n"
+    },
+    {
+        "distance": 0.747778594493866,
+        "prompt": "Come funzionano i pannelli solari?\n"
+    },
+    {
+        "distance": 0.7889024615287781,
+        "prompt": "Perch\u00e9 i terremoti si verificano lungo le faglie?\n"
+    },
+    {
+        "distance": 0.7873818874359131,
+        "prompt": "Perch\u00e9 i terremoti si verificano lungo le faglie?\n"
+    },
+    {
+        "distance": 0.7667454481124878,
+        "prompt": "Perch\u00e9 i terremoti si verificano lungo le faglie?\n"
+    },
+    {
+        "distance": 0.7770614624023438,
+        "prompt": "Quali sono le caratteristiche del clima mediterraneo?\n"
+    },
+    {
+        "distance": 0.7502264976501465,
+        "prompt": "Quali sono le caratteristiche del clima mediterraneo?\n"
+    },
+    {
+        "distance": 0.7392187118530273,
+        "prompt": "Quali sono le caratteristiche del clima mediterraneo?\n"
+    },
+    {
+        "distance": 0.8043148517608643,
+        "prompt": "Differenza tra uragano, tifone e ciclone.\n"
+    },
+    {
+        "distance": 0.7625963687896729,
+        "prompt": "Differenza tra uragano, tifone e ciclone.\n"
+    },
+    {
+        "distance": 0.7527992129325867,
+        "prompt": "Differenza tra uragano, tifone e ciclone.\n"
+    },
+    {
+        "distance": 0.7895277142524719,
+        "prompt": "Perch\u00e9 l\u2019Amazzonia \u00e8 cos\u00ec importante per il clima globale?\n"
+    },
+    {
+        "distance": 0.7743856310844421,
+        "prompt": "Perch\u00e9 l\u2019Amazzonia \u00e8 cos\u00ec importante per il clima globale?\n"
+    },
+    {
+        "distance": 0.7705395221710205,
+        "prompt": "Perch\u00e9 l\u2019Amazzonia \u00e8 cos\u00ec importante per il clima globale?\n"
+    },
+    {
+        "distance": 0.8021465539932251,
+        "prompt": "Quali sono i principali tipi di rocce e come si formano?\n"
+    },
+    {
+        "distance": 0.7610431909561157,
+        "prompt": "Quali sono i principali tipi di rocce e come si formano?\n"
+    },
+    {
+        "distance": 0.7472366690635681,
+        "prompt": "Quali sono i principali tipi di rocce e come si formano?\n"
+    },
+    {
+        "distance": 0.7756128907203674,
+        "prompt": "Come si forma un vulcano?\n"
+    },
+    {
+        "distance": 0.7491982579231262,
+        "prompt": "Come si forma un vulcano?\n"
+    },
+    {
+        "distance": 0.7445412874221802,
+        "prompt": "Come si forma un vulcano?\n"
+    },
+    {
+        "distance": 0.7604897022247314,
+        "prompt": "Qual \u00e8 il lago pi\u00f9 profondo del mondo?\n"
+    },
+    {
+        "distance": 0.7425632476806641,
+        "prompt": "Qual \u00e8 il lago pi\u00f9 profondo del mondo?\n"
+    },
+    {
+        "distance": 0.7410585284233093,
+        "prompt": "Qual \u00e8 il lago pi\u00f9 profondo del mondo?\n"
+    },
+    {
+        "distance": 0.8137663006782532,
+        "prompt": "Le principali correnti oceaniche e il loro impatto sul clima.\n"
+    },
+    {
+        "distance": 0.7840683460235596,
+        "prompt": "Le principali correnti oceaniche e il loro impatto sul clima.\n"
+    },
+    {
+        "distance": 0.7630622386932373,
+        "prompt": "Le principali correnti oceaniche e il loro impatto sul clima.\n"
+    },
+    {
+        "distance": 0.788825511932373,
+        "prompt": "Perch\u00e9 il Sahara si sta espandendo?\n"
+    },
+    {
+        "distance": 0.7817464470863342,
+        "prompt": "Perch\u00e9 il Sahara si sta espandendo?\n"
+    },
+    {
+        "distance": 0.7618459463119507,
+        "prompt": "Perch\u00e9 il Sahara si sta espandendo?\n"
+    },
+    {
+        "distance": 0.7991676330566406,
+        "prompt": "Cos'\u00e8 l'effetto serra e come influenza la temperatura terrestre?\n"
+    },
+    {
+        "distance": 0.7690607905387878,
+        "prompt": "Cos'\u00e8 l'effetto serra e come influenza la temperatura terrestre?\n"
+    },
+    {
+        "distance": 0.7546610832214355,
+        "prompt": "Cos'\u00e8 l'effetto serra e come influenza la temperatura terrestre?\n"
+    },
+    {
+        "distance": 0.7801147699356079,
+        "prompt": "Quali sono le caratteristiche del romanzo giallo?\n"
+    },
+    {
+        "distance": 0.745612621307373,
+        "prompt": "Quali sono le caratteristiche del romanzo giallo?\n"
+    },
+    {
+        "distance": 0.7429499626159668,
+        "prompt": "Quali sono le caratteristiche del romanzo giallo?\n"
+    },
+    {
+        "distance": 0.8162559270858765,
+        "prompt": "Le differenze tra pittura impressionista e realista.\n"
+    },
+    {
+        "distance": 0.7735388875007629,
+        "prompt": "Le differenze tra pittura impressionista e realista.\n"
+    },
+    {
+        "distance": 0.7636074423789978,
+        "prompt": "Le differenze tra pittura impressionista e realista.\n"
+    },
+    {
+        "distance": 0.7583515644073486,
+        "prompt": "Chi ha scritto \"1984\" e qual \u00e8 il suo significato?\n"
+    },
+    {
+        "distance": 0.7550699710845947,
+        "prompt": "Chi ha scritto \"1984\" e qual \u00e8 il suo significato?\n"
+    },
+    {
+        "distance": 0.7374067902565002,
+        "prompt": "Chi ha scritto \"1984\" e qual \u00e8 il suo significato?\n"
+    },
+    {
+        "distance": 0.7925215363502502,
+        "prompt": "Perch\u00e9 il latino \u00e8 considerato una lingua morta?\n"
+    },
+    {
+        "distance": 0.7608906030654907,
+        "prompt": "Perch\u00e9 il latino \u00e8 considerato una lingua morta?\n"
+    },
+    {
+        "distance": 0.7523465156555176,
+        "prompt": "Perch\u00e9 il latino \u00e8 considerato una lingua morta?\n"
+    },
+    {
+        "distance": 0.7916734218597412,
+        "prompt": "L'importanza della Divina Commedia nella letteratura italiana.\n"
+    },
+    {
+        "distance": 0.7691442966461182,
+        "prompt": "L'importanza della Divina Commedia nella letteratura italiana.\n"
+    },
+    {
+        "distance": 0.7632212042808533,
+        "prompt": "L'importanza della Divina Commedia nella letteratura italiana.\n"
+    },
+    {
+        "distance": 0.7632039189338684,
+        "prompt": "Chi ha inventato la stampa a caratteri mobili?\n"
+    },
+    {
+        "distance": 0.7593393921852112,
+        "prompt": "Chi ha inventato la stampa a caratteri mobili?\n"
+    },
+    {
+        "distance": 0.7563312649726868,
+        "prompt": "Chi ha inventato la stampa a caratteri mobili?\n"
+    },
+    {
+        "distance": 0.7837924957275391,
+        "prompt": "Quali sono le caratteristiche dell\u2019architettura gotica?\n"
+    },
+    {
+        "distance": 0.7601128220558167,
+        "prompt": "Quali sono le caratteristiche dell\u2019architettura gotica?\n"
+    },
+    {
+        "distance": 0.7543866634368896,
+        "prompt": "Quali sono le caratteristiche dell\u2019architettura gotica?\n"
+    },
+    {
+        "distance": 0.7805924415588379,
+        "prompt": "Perch\u00e9 la Gioconda \u00e8 cos\u00ec famosa?\n"
+    },
+    {
+        "distance": 0.7793798446655273,
+        "prompt": "Perch\u00e9 la Gioconda \u00e8 cos\u00ec famosa?\n"
+    },
+    {
+        "distance": 0.7589786052703857,
+        "prompt": "Perch\u00e9 la Gioconda \u00e8 cos\u00ec famosa?\n"
+    },
+    {
+        "distance": 0.774593710899353,
+        "prompt": "Come si suona una chitarra in accordatura standard?\n"
+    },
+    {
+        "distance": 0.7525225281715393,
+        "prompt": "Come si suona una chitarra in accordatura standard?\n"
+    },
+    {
+        "distance": 0.7329126000404358,
+        "prompt": "Come si suona una chitarra in accordatura standard?\n"
+    },
+    {
+        "distance": 0.7860244512557983,
+        "prompt": "Perch\u00e9 il jazz ha avuto un impatto cos\u00ec grande sulla musica moderna?"
+    },
+    {
+        "distance": 0.7800976037979126,
+        "prompt": "Perch\u00e9 il jazz ha avuto un impatto cos\u00ec grande sulla musica moderna?"
+    },
+    {
+        "distance": 0.775143563747406,
+        "prompt": "Perch\u00e9 il jazz ha avuto un impatto cos\u00ec grande sulla musica moderna?"
+    }
+]
