@@ -1,0 +1,20 @@
+@startuml
+actor User
+participant "Python CLI" as CLI
+participant Ollama
+database MongoDB
+
+== Prompt Submission ==
+User -> CLI : send prompt(emotion, input)
+CLI -> Ollama : forward prompt
+Ollama -> Ollama : run inference
+Ollama --> CLI : return model output
+CLI -> MongoDB : store(prompt, output)
+
+== Batch Evaluation ==
+User -> CLI : start evaluation
+CLI -> MongoDB : retrieve stored outputs
+CLI -> CLI : compute SuperGLUE scores
+CLI -> CLI : compute statistics and Cohen's d
+CLI -> User : return analysis results
+@enduml

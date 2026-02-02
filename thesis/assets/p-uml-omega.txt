@@ -1,0 +1,19 @@
+@startuml
+skinparam linetype ortho
+skinparam monochrome true
+
+title High-Level Training Pipeline for LoRA Fine-Tuning
+
+actor Developer
+component "Emotion Dataset (.jsonl)" as Dataset
+component "Text Tokenizer" as Tokenizer
+component "LoRA-Configured Velvet-14B" as LoRAModel
+component "Training Process" as Trainer
+
+Developer --> Dataset : Provide input data
+Dataset --> Tokenizer : Preprocess and tokenize
+Developer --> LoRAModel : Load base model and apply LoRA
+Tokenizer --> Trainer : Pass tokenized dataset
+LoRAModel --> Trainer : Provide fine-tunable model
+Trainer --> LoRAModel : Save trained model and tokenizer
+@enduml
